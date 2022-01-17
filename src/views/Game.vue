@@ -2,13 +2,9 @@
   <div class="game">
     <div class="quiz-box">
       <header>
-        <span class="title">ECW QUIZ</span>
-        <div class="timer">
-          <span class="time-left-txt">Time Left</span>
-          <span class="timer-sec">25</span>
-        </div>
+        <div class="total-point">Total Point <span>31</span></div>
+        <timer />
       </header>
-      <div class="time-line"></div>
       <section>
         <div class="question">
           <span class="que-text">
@@ -38,7 +34,10 @@
 </template>
 
 <script>
-export default {};
+import Timer from "../component/Timer.vue";
+export default {
+  components: { Timer },
+};
 </script>
 
 <style lang="scss">
@@ -59,31 +58,10 @@ export default {};
       display: flex;
       justify-content: space-between;
       align-items: center;
-      .title {
+      .total-point {
         font-size: 20px;
         font-weight: 600;
       }
-      .timer {
-        color: #004085;
-        background: #cce5ff;
-        border: 1px solid #b8daff;
-        height: 45px;
-        padding: 0 8px;
-        border-radius: 5px;
-        width: 145px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        .time-left-txt {
-          margin-right: 8px;
-        }
-      }
-    }
-    .time-line {
-      margin-top: 8px;
-      height: 3px;
-      background: #007bff;
     }
     section {
       .question {
