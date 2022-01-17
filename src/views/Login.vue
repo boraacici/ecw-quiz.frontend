@@ -28,7 +28,7 @@
 export default {};
 </script>
 
-<style>
+<style lang="scss" scoped>
 .login-container {
   width: 100%;
   height: 100vh;
@@ -46,6 +46,8 @@ h1{
   padding: 60px;
   background: #36393e;
   border-radius: 10px;
+  max-width: 375px;
+  box-sizing: border-box;
 }
 
 .form-container {
