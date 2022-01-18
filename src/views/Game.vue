@@ -27,7 +27,7 @@
         </div>
       </section>
       <div class="next-button-box">
-        <button class="next-btn">Next Que</button>
+        <button class="next-btn">Next Question</button>
       </div>
     </div>
   </div>
