@@ -50,7 +50,6 @@ export default {
   align-items: center;
   background-color: #5765f2;
   .quiz-box {
-    width: 500px;
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
