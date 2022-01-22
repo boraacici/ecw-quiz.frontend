@@ -2,9 +2,9 @@
   <div class="leader-board-container">
     <div class="leader-board-box">
       <div class="title">Leaderboard</div>
-      <div class="leader-board-text"
-        >Congratulations Sadık ! Your score: <span class="bold">20</span></div
-      >
+      <div class="leader-board-text">
+        Congratulations Sadık ! Your score: <span class="bold">20</span>
+      </div>
     </div>
     <table class="content-table">
       <thead>
@@ -20,33 +20,45 @@
           <th>Cabbar el Hakim</th>
           <th>31</th>
         </tr>
-      </tbody>
-      <tbody>
         <tr>
           <th>2</th>
           <th>Kuntay</th>
           <th>31</th>
         </tr>
-      </tbody>
-      <tbody>
-        <tr class="active-row">
+        <tr>
           <th>3</th>
           <th>Kuntay</th>
           <th>31</th>
         </tr>
-      </tbody>
-      <tbody>
         <tr>
           <th>4</th>
           <th>Kuntay</th>
           <th>31</th>
         </tr>
-      </tbody>
-      <tbody>
+        <tr>
+          <th>5</th>
+          <th>Kuntay</th>
+          <th>31</th>
+        </tr>
+        <tr>
+          <th>6</th>
+          <th>Kuntay</th>
+          <th>31</th>
+        </tr>
+        <tr>
+          <th>7</th>
+          <th>Kuntay</th>
+          <th>31</th>
+        </tr>
         <tr>
           <th>...</th>
           <th>...</th>
           <th>...</th>
+        </tr>
+        <tr class="active-row">
+          <th>99</th>
+          <th>Kuntay</th>
+          <th>31</th>
         </tr>
       </tbody>
     </table>
@@ -72,9 +84,8 @@ export default {};
   padding: 30px;
   justify-content: space-around;
 
-
   .leader-board-box {
-    margin-left: 36px;
+    margin-left: 14px;
     .title {
       font-family: Poppins;
       font-style: normal;
@@ -92,17 +103,15 @@ export default {};
       line-height: 30px;
       color: #696f79;
 
-      .bold{
+      .bold {
         font-weight: bold;
       }
     }
   }
 
   .content-table {
-    border-collapse: collapse;
-    margin: 25px;
+    max-width: 460px;
     font-size: 16px;
-    min-width: 375px;
 
     thead tr th {
       font-family: Poppins;
@@ -123,7 +132,7 @@ export default {};
 
     th,
     td {
-      padding: 12px 15px;
+      padding: 6px 6px;
       font-weight: normal;
     }
     tbody tr.active-row {
