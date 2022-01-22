@@ -30,13 +30,6 @@ export default {};
 
 <style lang="scss" scoped>
 .login-container {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #e5e5e5;
-
   .login-box {
     width: 509px;
     height: 649px;
@@ -47,6 +40,9 @@ export default {};
     display: inline-flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-around;
+
+    padding: 30px;
 
     .title {
       font-family: Poppins;
@@ -55,45 +51,42 @@ export default {};
       font-size: 30px;
       line-height: 45px;
       color: #000000;
-      margin-top: 50px;
-      margin-bottom: 33px;
     }
     form {
-      width: 70%;
+      width: 80%;
       display: inline-flex;
       flex-direction: column;
-    }
-    .name-label {
-      font-family: Poppins;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 16px;
-      line-height: 24px;
-      color: #696f79;
-      margin-bottom: 12px;
-    }
-    .name-input {
-      background: #ffffff;
-      box-shadow: 0px 15px 40px 5px #ededed;
-      border-radius: 30px;
-      border: none;
 
-      font-family: Poppins;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 14px;
-      line-height: 21px;
-      color: #8692a6;
-      padding-left: 38px;
-      padding-top: 22px;
-      padding-bottom: 22px;
+      .name-label {
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        color: #696f79;
+        margin-bottom: 12px;
+      }
+      .name-input {
+        background: #ffffff;
+        box-shadow: 0px 15px 40px 5px #ededed;
+        border-radius: 30px;
+        border: none;
+
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 21px;
+        color: #8692a6;
+        padding-left: 38px;
+        padding-top: 22px;
+        padding-bottom: 22px;
+      }
     }
     .rules {
       max-width: 411px;
       display: inline-flex;
       flex-direction: column;
-      margin-top: 56px;
-      margin-bottom: 52px;
 
       .rules-title {
         font-family: Poppins;
