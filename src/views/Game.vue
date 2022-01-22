@@ -54,8 +54,20 @@
 
 <script>
 import Timer from '../component/Timer.vue'
+
 export default {
   components: { Timer },
+  mounted() {
+    if (this.isTouchDevice()) {
+    this.$refs.container.style.height = (window.innerHeight) + 'px'
+    document.body.style.height = window.innerHeight + 'px'
+    }
+  },
+  methods: {
+    isTouchDevice() {
+      return window.matchMedia('(pointer: coarse)').matches
+    },
+  },
 }
 </script>
 
