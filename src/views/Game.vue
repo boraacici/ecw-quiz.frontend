@@ -1,239 +1,235 @@
 <template>
-  <div class="game">
-    <div class="quiz-box">
-      <div class="title-and-timer">
-        <span class="title">Quiz</span>
-        <span class="timer">25</span>
+  <div class="quiz-box">
+    <div class="title-and-timer">
+      <span class="title">Quiz</span>
+      <span class="timer">25</span>
+    </div>
+    <span class="description">Answer the question below</span>
+    <span class="question-number">Question 1</span>
+    <span class="question">
+      Guy Bailey, Roy Hackett and Paul Stephenson made history in 1963
+    </span>
+    <span class="choose">Choose answer</span>
+    <div class="answer-box">
+      <div class="radio-box">
+        <label class="container">
+          <span class="answer">one</span>
+          <input type="radio" checked="checked" name="radio" />
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">
+          <span class="answer">two</span>
+          <input type="radio" name="radio" />
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">
+          <span class="answer">three</span>
+          <input type="radio" name="radio" />
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">
+          <span class="answer">four</span>
+          <input type="radio" name="radio" />
+          <span class="checkmark"></span>
+        </label>
       </div>
-      <span class="description">Answer the question below</span>
-      <span class="question-number">Question 1</span>
-      <span class="question"
-        >Guy Bailey, Roy Hackett and Paul Stephenson made history in 1963</span
-      >
-      <span class="choose">Choose answer</span>
-      <div class="answer-box">
-        <div class="radio-box">
-          <label class="container">
-            <span class="answer">one</span>
-            <input type="radio" checked="checked" name="radio" />
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">
-            <span class="answer">two</span>
-            <input type="radio" name="radio" />
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">
-            <span class="answer">three</span>
-            <input type="radio" name="radio" />
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">
-            <span class="answer">four</span>
-            <input type="radio" name="radio" />
-            <span class="checkmark"></span>
-          </label>
-        </div>
-        <div class="secret-answer">
-          <span class="secret-answer-text">Your Answer</span>
-          <span class="secret-answer-text">Correct Answer</span>
-          <span class="secret-answer-text">Your Answer</span>
-          <span class="secret-answer-text">Your Answer</span>
-        </div>
+      <div class="secret-answer">
+        <span class="secret-answer-text">Your Answer</span>
+        <span class="secret-answer-text">Correct Answer</span>
+        <span class="secret-answer-text">Your Answer</span>
+        <span class="secret-answer-text">Your Answer</span>
       </div>
-      <div class="send-answer">
-        <button class="send-answer-button">Send Answer</button>
-      </div>
+    </div>
+    <div class="send-answer">
+      <button class="send-answer-button">Send Answer</button>
     </div>
   </div>
 </template>
 
 <script>
-import Timer from "../component/Timer.vue";
+import Timer from '../component/Timer.vue'
 export default {
   components: { Timer },
-};
+}
 </script>
 
 <style lang="scss">
-.game {
-  .quiz-box {
-    width: 509px;
-    height: 649px;
-    background: #ffffff;
-    box-shadow: 0px 15px 40px 5px #ededed;
-    border-radius: 30px;
+.quiz-box {
+  width: 509px;
+  height: 649px;
+  background: #ffffff;
+  box-shadow: 0px 15px 40px 5px #ededed;
+  border-radius: 30px;
 
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-around;
+  padding: 30px;
+
+  .title-and-timer {
+    width: 80%;
+    display: inline-flex;
+    justify-content: space-between;
+    .title {
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 33px;
+      line-height: 49px;
+      color: #696f79;
+    }
+    .timer {
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 33px;
+      line-height: 49px;
+      color: #de6944;
+    }
+  }
+  .description {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 30px;
+    color: #696f79;
+  }
+  .question-number {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 23px;
+    line-height: 34px;
+    color: #696f79;
+  }
+  .question {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 27px;
+    color: #696f79;
+  }
+  .choose {
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 23px;
+    line-height: 34px;
+    color: #696f79;
+  }
+  .answer-box {
     display: flex;
-    flex-direction: column;
+    width: 70%;
+    justify-content: space-between;
 
-    justify-content: space-around;
-    padding: 30px;
-
-    .title-and-timer {
-      width: 80%;
+    .radio-box {
       display: inline-flex;
-      justify-content: space-between;
-      .title {
-        font-family: Poppins;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 33px;
-        line-height: 49px;
-        color: #696f79;
-      }
-      .timer {
-        font-family: Poppins;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 33px;
-        line-height: 49px;
-        color: #de6944;
-      }
-    }
-    .description {
-      font-family: Poppins;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 20px;
-      line-height: 30px;
-      color: #696f79;
-    }
-    .question-number {
-      font-family: Poppins;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 23px;
-      line-height: 34px;
-      color: #696f79;
-    }
-    .question {
-      font-family: Poppins;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 18px;
-      line-height: 27px;
-      color: #696f79;
-    }
-    .choose {
-      font-family: Poppins;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 23px;
-      line-height: 34px;
-      color: #696f79;
-    }
-    .answer-box {
-      display: flex;
-      width: 70%;
-      justify-content: space-between;
+      flex-direction: column;
+      align-items: flex-start;
 
-      .radio-box {
-        display: inline-flex;
-        flex-direction: column;
-        align-items: start;
-
-        /* The container */
-        .container {
-          display: block;
-          position: relative;
-          padding-left: 35px;
-          margin-bottom: 12px;
-          cursor: pointer;
-          font-size: 22px;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
-        }
-
-        /* Hide the browser's default radio button */
-        .container input {
-          position: absolute;
-          opacity: 0;
-          cursor: pointer;
-        }
-
-        /* Create a custom radio button */
-        .checkmark {
-          position: absolute;
-          top: 2px;
-          left: 0;
-          height: 17px;
-          width: 17px;
-          border: 2px solid #000000;
-          border-radius: 50%;
-        }
-
-        /* On mouse-over, add a grey background color */
-        .container:hover input ~ .checkmark {
-          background-color: #ccc;
-        }
-
-        /* When the radio button is checked, add a blue background */
-        .container input:checked ~ .checkmark {
-          background-color: #fff;
-        }
-
-        /* Create the indicator (the dot/circle - hidden when not checked) */
-        .checkmark:after {
-          content: "";
-          position: absolute;
-          display: none;
-        }
-
-        /* Show the indicator (dot/circle) when checked */
-        .container input:checked ~ .checkmark:after {
-          display: block;
-        }
-
-        /* Style the indicator (dot/circle) */
-        .container .checkmark:after {
-          top: 4px;
-          left: 4px;
-          width: 9px;
-          height: 9px;
-          border-radius: 50%;
-          background: #000;
-        }
-      }
-      .secret-answer {
-        display: inline-flex;
-        flex-direction: column;
-
-        .secret-answer-text {
-          font-family: Poppins;
-          font-style: normal;
-          font-weight: bold;
-          font-size: 18px;
-          line-height: 27px;
-          color: #f24e1e;
-
-          margin-bottom: 12px;
-        }
-      }
-    }
-    .send-answer {
-      width: 100%;
-      display: inline-flex;
-      justify-content: flex-end;
-
-      .send-answer-button {
-        font-family: Poppins;
-        font-style: normal;
-        font-weight: bold;
+      /* The container */
+      .container {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
         font-size: 22px;
-        line-height: 33px;
-        color: #ffffff;
-
-        background: #8692a6;
-        border-radius: 30px;
-
-        padding: 16px 32px;
-        border: none;
-
-        margin-right: 52px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
       }
+
+      /* Hide the browser's default radio button */
+      .container input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+      }
+
+      /* Create a custom radio button */
+      .checkmark {
+        position: absolute;
+        top: 2px;
+        left: 0;
+        height: 17px;
+        width: 17px;
+        border: 2px solid #000000;
+        border-radius: 50%;
+      }
+
+      /* On mouse-over, add a grey background color */
+      .container:hover input ~ .checkmark {
+        background-color: #ccc;
+      }
+
+      /* When the radio button is checked, add a blue background */
+      .container input:checked ~ .checkmark {
+        background-color: #fff;
+      }
+
+      /* Create the indicator (the dot/circle - hidden when not checked) */
+      .checkmark:after {
+        content: '';
+        position: absolute;
+        display: none;
+      }
+
+      /* Show the indicator (dot/circle) when checked */
+      .container input:checked ~ .checkmark:after {
+        display: block;
+      }
+
+      /* Style the indicator (dot/circle) */
+      .container .checkmark:after {
+        top: 4px;
+        left: 4px;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: #000;
+      }
+    }
+    .secret-answer {
+      display: inline-flex;
+      flex-direction: column;
+
+      .secret-answer-text {
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 27px;
+        color: #f24e1e;
+
+        margin-bottom: 12px;
+      }
+    }
+  }
+  .send-answer {
+    width: 100%;
+    display: inline-flex;
+    justify-content: flex-end;
+
+    .send-answer-button {
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 22px;
+      line-height: 33px;
+      color: #ffffff;
+
+      background: #8692a6;
+      border-radius: 30px;
+
+      padding: 16px 32px;
+      border: none;
+
+      margin-right: 52px;
     }
   }
 }

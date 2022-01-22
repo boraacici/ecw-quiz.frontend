@@ -1,5 +1,4 @@
 <template>
-  <div class="login-container">
     <div class="login-box">
       <span class="title">English Common Words Quiz</span>
       <form action="">
@@ -21,7 +20,6 @@
         <button class="start-quiz-button">Start Quiz</button>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -29,7 +27,6 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
-.login-container {
   .login-box {
     width: 509px;
     height: 649px;
@@ -129,5 +126,4 @@ export default {};
       }
     }
   }
-}
 </style>
