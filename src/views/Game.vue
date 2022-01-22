@@ -1,33 +1,48 @@
 <template>
   <div class="game">
     <div class="quiz-box">
-      <header>
-        <div class="total-point">Total Point <span>31</span></div>
-        <timer />
-      </header>
-      <section>
-        <div class="question">
-          <span class="que-text">
-            Here I've inserted question from JavaScript
-          </span>
+      <div class="title-and-timer">
+        <span class="title">Quiz</span>
+        <span class="timer">25</span>
+      </div>
+      <span class="description">Answer the question below</span>
+      <span class="question-number">Question 1</span>
+      <span class="question"
+        >Guy Bailey, Roy Hackett and Paul Stephenson made history in 1963</span
+      >
+      <span class="choose">Choose answer</span>
+      <div class="answer-box">
+        <div class="radio-box">
+          <label class="container">
+            <span class="answer">one</span>
+            <input type="radio" checked="checked" name="radio" />
+            <span class="checkmark"></span>
+          </label>
+          <label class="container">
+            <span class="answer">two</span>
+            <input type="radio" name="radio" />
+            <span class="checkmark"></span>
+          </label>
+          <label class="container">
+            <span class="answer">three</span>
+            <input type="radio" name="radio" />
+            <span class="checkmark"></span>
+          </label>
+          <label class="container">
+            <span class="answer">four</span>
+            <input type="radio" name="radio" />
+            <span class="checkmark"></span>
+          </label>
         </div>
-        <div class="option-list">
-          <span class="option">
-            Here I've inserted options from JavaScript
-          </span>
-          <span class="option correct">
-            Here I've inserted options from JavaScript
-          </span>
-          <span class="option">
-            Here I've inserted options from JavaScript
-          </span>
-          <span class="option incorrect">
-            Here I've inserted options from JavaScript
-          </span>
+        <div class="secret-answer">
+          <span class="secret-answer-text">Your Answer</span>
+          <span class="secret-answer-text">Correct Answer</span>
+          <span class="secret-answer-text">Your Answer</span>
+          <span class="secret-answer-text">Your Answer</span>
         </div>
-      </section>
-      <div class="next-button-box">
-        <button class="next-btn">Next Question</button>
+      </div>
+      <div class="send-answer">
+        <button class="send-answer-button">Send Answer</button>
       </div>
     </div>
   </div>
@@ -42,111 +57,182 @@ export default {
 
 <style lang="scss">
 .game {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #5765f2;
   .quiz-box {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      .total-point {
-        font-size: 20px;
-        font-weight: 600;
-      }
-    }
-    section {
-      .question {
-        margin-top: 20px;
-        margin-bottom: 10px;
-        .que-text {
-          font-size: 25px;
-          font-weight: 600;
-        }
-      }
-      .option-list {
-        .option {
-          background: aliceblue;
-          border: 1px solid #84c5fe;
-          border-radius: 5px;
-          padding: 8px 15px;
-          font-size: 17px;
-          margin-bottom: 15px;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          .icon {
-            height: 26px;
-            width: 26px;
-            border: 2px solid transparent;
-            border-radius: 50%;
-            text-align: center;
-            font-size: 13px;
-            pointer-events: none;
-            transition: all 0.3s ease;
-            line-height: 24px;
-          }
-          .icon.tick {
-            color: #23903c;
-            border-color: #23903c;
-            background: #d4edda;
-          }
-          .icon.cross {
-            color: #a42834;
-            background: #f8d7da;
-            border-color: #a42834;
-          }
-        }
-        .option:hover {
-          color: #004085;
-          background: #cce5ff;
-          border: 1px solid #b8daff;
-        }
-        .option.correct {
-          color: #155724;
-          background: #d4edda;
-          border: 1px solid #c3e6cb;
-        }
-        .option.incorrect {
-          color: #721c24;
-          background: #f8d7da;
-          border: 1px solid #f5c6cb;
-        }
-        .option.disabled {
-          pointer-events: none;
-        }
-      }
-    }
+    width: 509px;
+    height: 649px;
+    background: #ffffff;
+    box-shadow: 0px 15px 40px 5px #ededed;
+    border-radius: 30px;
 
-    .next-button-box {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-around;
+    padding: 30px;
+
+    .title-and-timer {
+      width: 80%;
+      display: inline-flex;
+      justify-content: space-between;
+      .title {
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 33px;
+        line-height: 49px;
+        color: #696f79;
+      }
+      .timer {
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 33px;
+        line-height: 49px;
+        color: #de6944;
+      }
+    }
+    .description {
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 20px;
+      line-height: 30px;
+      color: #696f79;
+    }
+    .question-number {
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 23px;
+      line-height: 34px;
+      color: #696f79;
+    }
+    .question {
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 27px;
+      color: #696f79;
+    }
+    .choose {
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 23px;
+      line-height: 34px;
+      color: #696f79;
+    }
+    .answer-box {
       display: flex;
-      justify-content: center;
-      margin-top: 10px;
-      .next-btn {
-        height: 40px;
-        padding: 0 13px;
-        font-size: 18px;
-        font-weight: 400;
-        cursor: pointer;
+      width: 70%;
+      justify-content: space-between;
+
+      .radio-box {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: start;
+
+        /* The container */
+        .container {
+          display: block;
+          position: relative;
+          padding-left: 35px;
+          margin-bottom: 12px;
+          cursor: pointer;
+          font-size: 22px;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+
+        /* Hide the browser's default radio button */
+        .container input {
+          position: absolute;
+          opacity: 0;
+          cursor: pointer;
+        }
+
+        /* Create a custom radio button */
+        .checkmark {
+          position: absolute;
+          top: 2px;
+          left: 0;
+          height: 17px;
+          width: 17px;
+          border: 2px solid #000000;
+          border-radius: 50%;
+        }
+
+        /* On mouse-over, add a grey background color */
+        .container:hover input ~ .checkmark {
+          background-color: #ccc;
+        }
+
+        /* When the radio button is checked, add a blue background */
+        .container input:checked ~ .checkmark {
+          background-color: #fff;
+        }
+
+        /* Create the indicator (the dot/circle - hidden when not checked) */
+        .checkmark:after {
+          content: "";
+          position: absolute;
+          display: none;
+        }
+
+        /* Show the indicator (dot/circle) when checked */
+        .container input:checked ~ .checkmark:after {
+          display: block;
+        }
+
+        /* Style the indicator (dot/circle) */
+        .container .checkmark:after {
+          top: 4px;
+          left: 4px;
+          width: 9px;
+          height: 9px;
+          border-radius: 50%;
+          background: #000;
+        }
+      }
+      .secret-answer {
+        display: inline-flex;
+        flex-direction: column;
+
+        .secret-answer-text {
+          font-family: Poppins;
+          font-style: normal;
+          font-weight: bold;
+          font-size: 18px;
+          line-height: 27px;
+          color: #f24e1e;
+
+          margin-bottom: 12px;
+        }
+      }
+    }
+    .send-answer {
+      width: 100%;
+      display: inline-flex;
+      justify-content: flex-end;
+
+      .send-answer-button {
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 22px;
+        line-height: 33px;
+        color: #ffffff;
+
+        background: #8692a6;
+        border-radius: 30px;
+
+        padding: 16px 32px;
         border: none;
-        outline: none;
-        color: #fff;
-        border-radius: 5px;
-        background: #007bff;
-        border: 1px solid #007bff;
-        line-height: 10px;
-        pointer-events: none;
-        transform: scale(0.95);
-        transition: all 0.3s ease;
+
+        margin-right: 52px;
       }
     }
   }
