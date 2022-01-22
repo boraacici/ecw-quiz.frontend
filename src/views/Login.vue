@@ -66,11 +66,27 @@ export default {};
       color: #696f79;
       margin-bottom: 12px;
     }
-    .name-input {
-      background: #ffffff;
-      box-shadow: 0px 15px 40px 5px #ededed;
-      border-radius: 30px;
-      border: none;
+    form {
+      width: 80%;
+      display: inline-flex;
+      flex-direction: column;
+
+      .name-label {
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        color: #696f79;
+        margin-bottom: 12px;
+      }
+      .name-input {
+        background: #ffffff;
+        -webkit-appearance: none;
+        box-shadow: 0px 15px 40px 5px #ededed;
+        // border: 1px solid #8692A6;
+        border-radius: 30px;
+        border: none;
 
       font-family: Poppins;
       font-style: normal;
