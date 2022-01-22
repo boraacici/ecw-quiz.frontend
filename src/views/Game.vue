@@ -61,17 +61,17 @@ export default {
 
 <style lang="scss">
 .quiz-box {
-  width: 509px;
-  height: 649px;
+  width: 100%;
+  height: 100%;
+  max-width: 509px;
+  max-height: 649px;
   background: #ffffff;
   box-shadow: 0px 15px 40px 5px #ededed;
   border-radius: 30px;
-
   display: flex;
   flex-direction: column;
-
-  justify-content: space-around;
-  padding: 30px;
+  justify-content: space-evenly;
+  padding: 0 30px;
 
   .quiz-info-and-timer {
     width: 90%;
@@ -264,6 +264,13 @@ export default {
 
       margin-right: 52px;
     }
+  }
+}
+
+  @media (hover: none) {
+  .quiz-box {
+    border-radius: 0;
+    max-height: none;
   }
 }
 </style>

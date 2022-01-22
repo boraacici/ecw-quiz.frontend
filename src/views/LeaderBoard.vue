@@ -51,6 +51,11 @@
           <th>31</th>
         </tr>
         <tr>
+          <th>8</th>
+          <th>Kuntay</th>
+          <th>31</th>
+        </tr>
+        <tr>
           <th>...</th>
           <th>...</th>
           <th>...</th>
@@ -74,18 +79,22 @@ export default {};
 
 <style lang="scss" scoped>
 .leader-board-container {
-  width: 509px;
-  height: 649px;
+  width: 100%;
+  height: 100%;
+  max-width: 509px;
+  max-height: 649px;
   background: #ffffff;
   box-shadow: 0px 15px 40px 5px #ededed;
   border-radius: 30px;
   display: flex;
   flex-direction: column;
-  padding: 30px;
-  justify-content: space-around;
+  padding: 0 30px;
+  justify-content: space-evenly;
 
   .leader-board-box {
-    margin-left: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     .title {
       font-family: Poppins;
       font-style: normal;
@@ -102,6 +111,7 @@ export default {};
       font-size: 20px;
       line-height: 30px;
       color: #696f79;
+      text-align: center;
 
       .bold {
         font-weight: bold;
@@ -110,7 +120,6 @@ export default {};
   }
 
   .content-table {
-    max-width: 460px;
     font-size: 16px;
 
     thead tr th {
@@ -132,7 +141,7 @@ export default {};
 
     th,
     td {
-      padding: 6px 6px;
+      padding: 3px 3px;
       font-weight: normal;
     }
     tbody tr.active-row {
@@ -162,6 +171,13 @@ export default {};
 
       margin-right: 52px;
     }
+  }
+}
+
+@media (hover: none) {
+  .leader-board-container {
+    border-radius: 0;
+    max-height: none;
   }
 }
 </style>

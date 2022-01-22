@@ -28,8 +28,10 @@ export default {};
 
 <style lang="scss" scoped>
   .login-box {
-    width: 509px;
-    height: 649px;
+    width: 100%;
+    height: 100%;
+    max-width: 509px;
+    max-height: 649px;
     background: #ffffff;
     box-shadow: 0px 15px 40px 5px #ededed;
     border-radius: 30px;
@@ -37,9 +39,9 @@ export default {};
     display: inline-flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
 
-    padding: 30px;
+    padding: 0 30px;
 
     .title {
       font-family: Poppins;
@@ -126,4 +128,11 @@ export default {};
       }
     }
   }
+
+  @media (hover: none) {
+  .login-box {
+    border-radius: 0;
+    max-height: none;
+  }
+}
 </style>
