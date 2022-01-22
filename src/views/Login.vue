@@ -52,20 +52,6 @@ export default {};
     color: #000000;
     text-align: center;
   }
-  form {
-    width: 80%;
-    display: inline-flex;
-    flex-direction: column;
-
-    .name-label {
-      font-family: Poppins;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 16px;
-      line-height: 24px;
-      color: #696f79;
-      margin-bottom: 12px;
-    }
     form {
       width: 80%;
       display: inline-flex;
