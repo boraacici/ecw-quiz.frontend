@@ -1,43 +1,49 @@
 <template>
   <div class="quiz-box">
-    <div class="title-and-timer">
-      <span class="title">Quiz</span>
+    <div class="quiz-info-and-timer">
+      <div class="quiz-info">
+        <span class="title">Quiz</span>
+        <span class="description">Answer the question below</span>
+      </div>
       <span class="timer">25</span>
     </div>
-    <span class="description">Answer the question below</span>
-    <span class="question-number">Question 1</span>
-    <span class="question">
-      Guy Bailey, Roy Hackett and Paul Stephenson made history in 1963
-    </span>
-    <span class="choose">Choose answer</span>
-    <div class="answer-box">
-      <div class="radio-box">
-        <label class="container">
-          <span class="answer">one</span>
-          <input type="radio" checked="checked" name="radio" />
-          <span class="checkmark"></span>
-        </label>
-        <label class="container">
-          <span class="answer">two</span>
-          <input type="radio" name="radio" />
-          <span class="checkmark"></span>
-        </label>
-        <label class="container">
-          <span class="answer">three</span>
-          <input type="radio" name="radio" />
-          <span class="checkmark"></span>
-        </label>
-        <label class="container">
-          <span class="answer">four</span>
-          <input type="radio" name="radio" />
-          <span class="checkmark"></span>
-        </label>
-      </div>
-      <div class="secret-answer">
-        <span class="secret-answer-text">Your Answer</span>
-        <span class="secret-answer-text">Correct Answer</span>
-        <span class="secret-answer-text">Your Answer</span>
-        <span class="secret-answer-text">Your Answer</span>
+    <div class="question-box">
+      <span class="question-number">Question 1</span>
+      <span class="question">
+        Guy Bailey, Roy Hackett and Paul Stephenson made history in 1963
+      </span>
+    </div>
+    <div class="answer-container">
+      <span class="choose">Choose answer</span>
+      <div class="answer-box">
+        <div class="radio-box">
+          <label class="container">
+            <span class="answer">one</span>
+            <input type="radio" checked="checked" name="radio" />
+            <span class="checkmark"></span>
+          </label>
+          <label class="container">
+            <span class="answer">two</span>
+            <input type="radio" name="radio" />
+            <span class="checkmark"></span>
+          </label>
+          <label class="container">
+            <span class="answer">three</span>
+            <input type="radio" name="radio" />
+            <span class="checkmark"></span>
+          </label>
+          <label class="container">
+            <span class="answer">four</span>
+            <input type="radio" name="radio" />
+            <span class="checkmark"></span>
+          </label>
+        </div>
+        <div class="secret-answer">
+          <span class="secret-answer-text">Your Answer</span>
+          <span class="secret-answer-text">Correct Answer</span>
+          <span class="secret-answer-text">Your Answer</span>
+          <span class="secret-answer-text">Your Answer</span>
+        </div>
       </div>
     </div>
     <div class="send-answer">
@@ -47,10 +53,10 @@
 </template>
 
 <script>
-import Timer from '../component/Timer.vue'
+import Timer from "../component/Timer.vue";
 export default {
   components: { Timer },
-}
+};
 </script>
 
 <style lang="scss">
@@ -67,17 +73,30 @@ export default {
   justify-content: space-around;
   padding: 30px;
 
-  .title-and-timer {
-    width: 80%;
+  .quiz-info-and-timer {
+    width: 90%;
     display: inline-flex;
     justify-content: space-between;
-    .title {
-      font-family: Poppins;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 33px;
-      line-height: 49px;
-      color: #696f79;
+
+    .quiz-info {
+      .title {
+        display: block;
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: bold;
+        font-size: 33px;
+        line-height: 49px;
+        color: #696f79;
+        margin-bottom: 10px;
+      }
+      .description {
+        font-family: Poppins;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 20px;
+        line-height: 30px;
+        color: #696f79;
+      }
     }
     .timer {
       font-family: Poppins;
@@ -88,149 +107,150 @@ export default {
       color: #de6944;
     }
   }
-  .description {
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 20px;
-    line-height: 30px;
-    color: #696f79;
+  .question-box{
+
+    .question-number {
+      display: block;
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 23px;
+      line-height: 34px;
+      color: #696f79;
+      margin-bottom: 20px;
+    }
+    .question {
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 27px;
+      color: #696f79;
+    }
   }
-  .question-number {
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 23px;
-    line-height: 34px;
-    color: #696f79;
-  }
-  .question {
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 27px;
-    color: #696f79;
-  }
-  .choose {
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 23px;
-    line-height: 34px;
-    color: #696f79;
-  }
-  .answer-box {
-    display: flex;
-    width: 70%;
-    justify-content: space-between;
+  .answer-container{
 
-    .radio-box {
-      display: inline-flex;
-      flex-direction: column;
-      align-items: flex-start;
-
-      /* The container */
-      .container {
-        display: block;
-        position: relative;
-        padding-left: 35px;
-        margin-bottom: 12px;
-        cursor: pointer;
-        font-size: 22px;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
+    .choose {
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 23px;
+      line-height: 34px;
+      color: #696f79;
+    }
+    .answer-box {
+      display: flex;
+      width: 70%;
+      justify-content: space-between;
+      margin-top: 20px;
+  
+      .radio-box {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: flex-start;
+  
+        /* The container */
+        .container {
+          display: block;
+          position: relative;
+          padding-left: 35px;
+          margin-bottom: 12px;
+          cursor: pointer;
+          font-size: 22px;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+  
+        /* Hide the browser's default radio button */
+        .container input {
+          position: absolute;
+          opacity: 0;
+          cursor: pointer;
+        }
+  
+        /* Create a custom radio button */
+        .checkmark {
+          position: absolute;
+          top: 2px;
+          left: 0;
+          height: 17px;
+          width: 17px;
+          border: 2px solid #000000;
+          border-radius: 50%;
+        }
+  
+        /* On mouse-over, add a grey background color */
+        .container:hover input ~ .checkmark {
+          background-color: #ccc;
+        }
+  
+        /* When the radio button is checked, add a blue background */
+        .container input:checked ~ .checkmark {
+          background-color: #fff;
+        }
+  
+        /* Create the indicator (the dot/circle - hidden when not checked) */
+        .checkmark:after {
+          content: "";
+          position: absolute;
+          display: none;
+        }
+  
+        /* Show the indicator (dot/circle) when checked */
+        .container input:checked ~ .checkmark:after {
+          display: block;
+        }
+  
+        /* Style the indicator (dot/circle) */
+        .container .checkmark:after {
+          top: 4px;
+          left: 4px;
+          width: 9px;
+          height: 9px;
+          border-radius: 50%;
+          background: #000;
+        }
       }
-
-      /* Hide the browser's default radio button */
-      .container input {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-      }
-
-      /* Create a custom radio button */
-      .checkmark {
-        position: absolute;
-        top: 2px;
-        left: 0;
-        height: 17px;
-        width: 17px;
-        border: 2px solid #000000;
-        border-radius: 50%;
-      }
-
-      /* On mouse-over, add a grey background color */
-      .container:hover input ~ .checkmark {
-        background-color: #ccc;
-      }
-
-      /* When the radio button is checked, add a blue background */
-      .container input:checked ~ .checkmark {
-        background-color: #fff;
-      }
-
-      /* Create the indicator (the dot/circle - hidden when not checked) */
-      .checkmark:after {
-        content: '';
-        position: absolute;
-        display: none;
-      }
-
-      /* Show the indicator (dot/circle) when checked */
-      .container input:checked ~ .checkmark:after {
-        display: block;
-      }
-
-      /* Style the indicator (dot/circle) */
-      .container .checkmark:after {
-        top: 4px;
-        left: 4px;
-        width: 9px;
-        height: 9px;
-        border-radius: 50%;
-        background: #000;
+      .secret-answer {
+        display: inline-flex;
+        flex-direction: column;
+  
+        .secret-answer-text {
+          font-family: Poppins;
+          font-style: normal;
+          font-weight: bold;
+          font-size: 18px;
+          line-height: 27px;
+          color: #f24e1e;
+  
+          margin-bottom: 12px;
+        }
       }
     }
-    .secret-answer {
+  }
+    .send-answer {
+      width: 100%;
       display: inline-flex;
-      flex-direction: column;
-
-      .secret-answer-text {
+      justify-content: flex-end;
+  
+      .send-answer-button {
         font-family: Poppins;
         font-style: normal;
         font-weight: bold;
-        font-size: 18px;
-        line-height: 27px;
-        color: #f24e1e;
-
-        margin-bottom: 12px;
+        font-size: 22px;
+        line-height: 33px;
+        color: #ffffff;
+  
+        background: #8692a6;
+        border-radius: 30px;
+  
+        padding: 16px 32px;
+        border: none;
+  
+        margin-right: 52px;
       }
     }
-  }
-  .send-answer {
-    width: 100%;
-    display: inline-flex;
-    justify-content: flex-end;
-
-    .send-answer-button {
-      font-family: Poppins;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 22px;
-      line-height: 33px;
-      color: #ffffff;
-
-      background: #8692a6;
-      border-radius: 30px;
-
-      padding: 16px 32px;
-      border: none;
-
-      margin-right: 52px;
-    }
-  }
 }
 </style>
