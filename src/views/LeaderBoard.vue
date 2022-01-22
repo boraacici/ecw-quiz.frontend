@@ -1,51 +1,57 @@
 <template>
   <div class="leader-board-container">
-    <div class="emty">
-      <div class="leader-board-box">
-        <h1 class="title">LEADER BOARD</h1>
-        <table class="content-table">
-          <thead>
-            <tr>
-              <th>Rank</th>
-              <th>Name</th>
-              <th>Country</th>
-              <th>Point</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>1</th>
-              <th>Cabbar el Hakim</th>
-              <th>Turkey</th>
-              <th>31</th>
-            </tr>
-          </tbody>
-          <tbody>
-            <tr>
-              <th>2</th>
-              <th>Kuntay</th>
-              <th>Turkey</th>
-              <th>31</th>
-            </tr>
-          </tbody>
-          <tbody>
-            <tr class="active-row">
-              <th>3</th>
-              <th>Kuntay</th>
-              <th>Turkey</th>
-              <th>31</th>
-            </tr>
-          </tbody>
-          <tbody>
-            <tr>
-              <th>4</th>
-              <th>Kuntay</th>
-              <th>Turkey</th>
-              <th>31</th>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <div class="leader-board-box">
+      <div class="title">Leaderboard</div>
+      <div class="leader-board-text"
+        >Congratulations Sadık ! Your score: <span class="bold">20</span></div
+      >
+    </div>
+    <table class="content-table">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Name</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>1</th>
+          <th>Cabbar el Hakim</th>
+          <th>31</th>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <th>2</th>
+          <th>Kuntay</th>
+          <th>31</th>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr class="active-row">
+          <th>3</th>
+          <th>Kuntay</th>
+          <th>31</th>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <th>4</th>
+          <th>Kuntay</th>
+          <th>31</th>
+        </tr>
+      </tbody>
+      <tbody>
+        <tr>
+          <th>...</th>
+          <th>...</th>
+          <th>...</th>
+        </tr>
+      </tbody>
+    </table>
+    <div class="try-again">
+      <button class="try-again-button">Try Again</button>
     </div>
   </div>
 </template>
@@ -56,54 +62,96 @@ export default {};
 
 <style lang="scss" scoped>
 .leader-board-container {
-  width: 100%;
-  height: 100vh;
-  background-color: #5765f2;
+  width: 509px;
+  height: 649px;
+  background: #ffffff;
+  box-shadow: 0px 15px 40px 5px #ededed;
+  border-radius: 30px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  padding: 30px;
+  justify-content: space-around;
+
 
   .leader-board-box {
-    background-color: #fff;
-    padding: 40px;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
+    margin-left: 36px;
     .title {
-      color: #404EED;
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 33px;
+      line-height: 49px;
+      color: #696f79;
+      margin-bottom: 10px;
+    }
+    .leader-board-text {
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 20px;
+      line-height: 30px;
+      color: #696f79;
+
+      .bold{
+        font-weight: bold;
+      }
+    }
+  }
+
+  .content-table {
+    border-collapse: collapse;
+    margin: 25px;
+    font-size: 16px;
+    min-width: 375px;
+
+    thead tr th {
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 23px;
+      line-height: 34px;
+      color: #696f79;
+    }
+    tbody tr th {
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 27px;
+      color: #696f79;
     }
 
-    .content-table {
-      border-collapse: collapse;
-      margin: 25px;
-      font-size: 16px;
-      min-width: 375px;
-      border-left: 1px solid #dddddd;
-      border-right: 1px solid #dddddd;
+    th,
+    td {
+      padding: 12px 15px;
+      font-weight: normal;
+    }
+    tbody tr.active-row {
+      th {
+        font-weight: bold;
+      }
+    }
+  }
+  .try-again {
+    width: 100%;
+    display: inline-flex;
+    justify-content: flex-end;
 
-      thead tr {
-        background-color: #404EED;
-        color: #fff;
-      }
-      th,
-      td {
-        padding: 12px 15px;
-        font-weight: normal;
-      }
-      tbody tr {
-        border-bottom: 1px solid #dddddd;
-      }
-      tbody:nth-of-type(even) {
-        background-color: #f3f3f3;
-      }
-      tbody tr.active-row {
-        color: #404EED;
-        th{
-            font-weight: bold;
-        }
-      }
+    .try-again-button {
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 22px;
+      line-height: 33px;
+      color: #ffffff;
+
+      background: #8692a6;
+      border-radius: 30px;
+
+      padding: 16px 32px;
+      border: none;
+
+      margin-right: 52px;
     }
   }
 }
