@@ -40,7 +40,7 @@
         </div>
         <div class="secret-answer">
           <span class="secret-answer-text">Your Answer</span>
-          <span class="secret-answer-text">Correct Answer</span>
+          <span class="secret-answer-text correct">Correct Answer</span>
           <span class="secret-answer-text">Your Answer</span>
           <span class="secret-answer-text">Your Answer</span>
         </div>
@@ -53,10 +53,10 @@
 </template>
 
 <script>
-import Timer from "../component/Timer.vue";
+import Timer from '../component/Timer.vue'
 export default {
   components: { Timer },
-};
+}
 </script>
 
 <style lang="scss">
@@ -107,8 +107,7 @@ export default {
       color: #de6944;
     }
   }
-  .question-box{
-
+  .question-box {
     .question-number {
       display: block;
       font-family: Poppins;
@@ -128,8 +127,7 @@ export default {
       color: #696f79;
     }
   }
-  .answer-container{
-
+  .answer-container {
     .choose {
       font-family: Poppins;
       font-style: normal;
@@ -143,12 +141,12 @@ export default {
       width: 70%;
       justify-content: space-between;
       margin-top: 20px;
-  
+
       .radio-box {
         display: inline-flex;
         flex-direction: column;
         align-items: flex-start;
-  
+
         /* The container */
         .container {
           display: block;
@@ -156,20 +154,27 @@ export default {
           padding-left: 35px;
           margin-bottom: 12px;
           cursor: pointer;
-          font-size: 22px;
           -webkit-user-select: none;
           -moz-user-select: none;
           -ms-user-select: none;
           user-select: none;
+          font-family: Poppins;
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 27px;
+          letter-spacing: 0em;
+          text-align: left;
+          color: #696F79;
         }
-  
+
         /* Hide the browser's default radio button */
         .container input {
           position: absolute;
           opacity: 0;
           cursor: pointer;
         }
-  
+
         /* Create a custom radio button */
         .checkmark {
           position: absolute;
@@ -177,32 +182,32 @@ export default {
           left: 0;
           height: 17px;
           width: 17px;
-          border: 2px solid #000000;
+          border: 2px solid #696F79;
           border-radius: 50%;
         }
-  
+
         /* On mouse-over, add a grey background color */
         .container:hover input ~ .checkmark {
           background-color: #ccc;
         }
-  
+
         /* When the radio button is checked, add a blue background */
         .container input:checked ~ .checkmark {
           background-color: #fff;
         }
-  
+
         /* Create the indicator (the dot/circle - hidden when not checked) */
         .checkmark:after {
-          content: "";
+          content: '';
           position: absolute;
           display: none;
         }
-  
+
         /* Show the indicator (dot/circle) when checked */
         .container input:checked ~ .checkmark:after {
           display: block;
         }
-  
+
         /* Style the indicator (dot/circle) */
         .container .checkmark:after {
           top: 4px;
@@ -210,47 +215,55 @@ export default {
           width: 9px;
           height: 9px;
           border-radius: 50%;
-          background: #000;
+          background: #696F79;
         }
       }
       .secret-answer {
         display: inline-flex;
         flex-direction: column;
-  
+
         .secret-answer-text {
           font-family: Poppins;
           font-style: normal;
           font-weight: bold;
-          font-size: 18px;
+          font-size: 9px;
+          transform-origin: center;
+          transform: scale(2);
           line-height: 27px;
           color: #f24e1e;
-  
+
           margin-bottom: 12px;
+
+          &.correct{
+            color: #08AD36;
+          }
         }
+
+
       }
     }
   }
-    .send-answer {
-      width: 100%;
-      display: inline-flex;
-      justify-content: flex-end;
-  
-      .send-answer-button {
-        font-family: Poppins;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 22px;
-        line-height: 33px;
-        color: #ffffff;
-  
-        background: #8692a6;
-        border-radius: 30px;
-  
-        padding: 16px 32px;
-        border: none;
-  
-        margin-right: 52px;
-      }
+  .send-answer {
+    width: 100%;
+    display: inline-flex;
+    justify-content: flex-end;
+
+    .send-answer-button {
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 22px;
+      line-height: 33px;
+      color: #ffffff;
+
+      background: #8692a6;
+      border-radius: 30px;
+
+      padding: 16px 32px;
+      border: none;
+
+      margin-right: 52px;
     }
+  }
 }
 </style>
