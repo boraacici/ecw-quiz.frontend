@@ -41,21 +41,6 @@
           <th>31</th>
         </tr>
         <tr>
-          <th>6</th>
-          <th>Kuntay</th>
-          <th>31</th>
-        </tr>
-        <tr>
-          <th>7</th>
-          <th>Kuntay</th>
-          <th>31</th>
-        </tr>
-        <tr>
-          <th>8</th>
-          <th>Kuntay</th>
-          <th>31</th>
-        </tr>
-        <tr>
           <th>...</th>
           <th>...</th>
           <th>...</th>
