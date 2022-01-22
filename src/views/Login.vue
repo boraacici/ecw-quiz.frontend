@@ -38,8 +38,8 @@ export default {};
   background: #e5e5e5;
 
   .login-box {
-    width: 569px;
-    height: 709px;
+    width: 509px;
+    height: 649px;
     background: #ffffff;
     box-shadow: 0px 15px 40px 5px #ededed;
     border-radius: 30px;
