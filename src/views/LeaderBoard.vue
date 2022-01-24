@@ -94,7 +94,7 @@ export default {};
       font-style: normal;
       font-weight: normal;
       font-size: 20px;
-      line-height: 30px;
+      line-height: 22px;
       color: #696f79;
       text-align: center;
 
@@ -120,7 +120,7 @@ export default {};
       font-style: normal;
       font-weight: normal;
       font-size: 18px;
-      line-height: 27px;
+      line-height: 23px;
       color: #696f79;
     }
 
@@ -163,6 +163,14 @@ export default {};
   .leader-board-container {
     border-radius: 0;
     max-height: none;
+
+    .try-again {
+      justify-content: center;
+
+      .try-again-button {
+        margin: 0;
+      }
+    }
   }
 }
 </style>

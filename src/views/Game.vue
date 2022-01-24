@@ -14,7 +14,7 @@
       </span>
     </div>
     <div class="answer-container">
-      <span class="choose">Choose answer</span>
+      <!-- <span class="choose">Choose answer</span> -->
       <div class="answer-box">
         <div class="radio-box">
           <label class="container">
@@ -53,10 +53,10 @@
 </template>
 
 <script>
-import Timer from '../component/Timer.vue'
+import Timer from "../component/Timer.vue";
 export default {
   components: { Timer },
-}
+};
 </script>
 
 <style lang="scss">
@@ -94,7 +94,7 @@ export default {
         font-style: normal;
         font-weight: normal;
         font-size: 20px;
-        line-height: 30px;
+        line-height: 22px;
         color: #696f79;
       }
     }
@@ -123,7 +123,7 @@ export default {
       font-style: normal;
       font-weight: normal;
       font-size: 18px;
-      line-height: 27px;
+      line-height: 22px;
       color: #696f79;
     }
   }
@@ -165,7 +165,7 @@ export default {
           line-height: 27px;
           letter-spacing: 0em;
           text-align: left;
-          color: #696F79;
+          color: #696f79;
         }
 
         /* Hide the browser's default radio button */
@@ -182,7 +182,7 @@ export default {
           left: 0;
           height: 17px;
           width: 17px;
-          border: 2px solid #696F79;
+          border: 2px solid #696f79;
           border-radius: 50%;
         }
 
@@ -198,7 +198,7 @@ export default {
 
         /* Create the indicator (the dot/circle - hidden when not checked) */
         .checkmark:after {
-          content: '';
+          content: "";
           position: absolute;
           display: none;
         }
@@ -215,7 +215,7 @@ export default {
           width: 9px;
           height: 9px;
           border-radius: 50%;
-          background: #696F79;
+          background: #696f79;
         }
       }
       .secret-answer {
@@ -234,12 +234,10 @@ export default {
 
           margin-bottom: 12px;
 
-          &.correct{
-            color: #08AD36;
+          &.correct {
+            color: #08ad36;
           }
         }
-
-
       }
     }
   }
@@ -267,10 +265,18 @@ export default {
   }
 }
 
-  @media (hover: none) {
+@media (hover: none) {
   .quiz-box {
     border-radius: 0;
     max-height: none;
+
+    .send-answer {
+      justify-content: center;
+
+      .send-answer-button {
+        margin: 0;
+      }
+    }
   }
 }
 </style>

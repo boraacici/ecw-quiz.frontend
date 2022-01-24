@@ -2,7 +2,7 @@
   <div class="login-box">
     <span class="title">English Common Words Quiz</span>
     <form action="">
-      <label class="name-label" for="fname">Fullname</label>
+      <!-- <label class="name-label" for="fname">Fullname</label> -->
       <input class="name-input" type="text" placeholder="Enter your name" />
     </form>
     <div class="rules">
@@ -48,7 +48,7 @@ export default {};
     font-style: normal;
     font-weight: bold;
     font-size: 30px;
-    line-height: 45px;
+    line-height: 38px;
     color: #000000;
     text-align: center;
   }
@@ -95,7 +95,7 @@ export default {};
       font-style: normal;
       font-weight: 600;
       font-size: 23px;
-      line-height: 34px;
+      line-height: 44px;
       color: #696f79;
     }
     .rule {
@@ -103,7 +103,7 @@ export default {};
       font-style: normal;
       font-weight: normal;
       font-size: 18px;
-      line-height: 37px;
+      line-height: 22px;
       color: #8692a6;
     }
   }
@@ -136,6 +136,14 @@ export default {};
   .login-box {
     border-radius: 0;
     max-height: none;
+
+    .start-quiz{
+      justify-content: center;
+
+      .start-quiz-button{
+        margin: 0;
+      }
+    }
   }
 }
 </style>
