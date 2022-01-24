@@ -3,7 +3,8 @@
     <div class="leader-board-box">
       <div class="title">Leaderboard</div>
       <div class="leader-board-text">
-        Congratulations Sadık ! Your score: <span class="bold">20</span>
+        Congratulations Sadık ! Your score:
+        <span class="bold">20</span>
       </div>
     </div>
     <table class="content-table">
@@ -15,30 +16,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th>1</th>
-          <th>Cabbar el Hakim</th>
-          <th>31</th>
-        </tr>
-        <tr>
-          <th>2</th>
-          <th>Kuntay</th>
-          <th>31</th>
-        </tr>
-        <tr>
-          <th>3</th>
-          <th>Kuntay</th>
-          <th>31</th>
-        </tr>
-        <tr>
-          <th>4</th>
-          <th>Kuntay</th>
-          <th>31</th>
-        </tr>
-        <tr>
-          <th>5</th>
-          <th>Kuntay</th>
-          <th>31</th>
+        <tr v-for="(user, index) in leaderboardDocs" :key="index">
+          <th>{{ index + 1 }}</th>
+          <th>{{ user.username }}</th>
+          <th>{{ user.score }}</th>
         </tr>
         <tr>
           <th>...</th>
@@ -59,7 +40,21 @@
 </template>
 
 <script>
-export default {};
+import { getLeaderboard } from '../core/db'
+export default {
+  name: 'Leaderboard',
+  data() {
+    return {
+      leaderboardDocs: undefined,
+    }
+  },
+  created() {
+    getLeaderboard().then((docs) => {
+      this.leaderboardDocs = docs
+      console.log(this.leaderboardDocs)
+    })
+  },
+}
 </script>
 
 <style lang="scss" scoped>

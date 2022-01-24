@@ -2,28 +2,66 @@
   <div class="login-box">
     <span class="title">English Common Words Quiz</span>
     <form action="">
-      <!-- <label class="name-label" for="fname">Fullname</label> -->
-      <input class="name-input" type="text" placeholder="Enter your name" />
+      <label class="name-label" for="fname" v-if="isLogin">
+        Hello {{ username }}
+      </label>
+      <input
+        v-if="!isLogin"
+        class="name-input"
+        type="text"
+        v-model="username"
+        placeholder="Enter your name"
+      />
     </form>
     <div class="rules">
       <span class="rules-title">Rules</span>
-      <span class="rule"
-        >1. You will have only 15 seconds per each question.</span
-      >
+      <span class="rule">
+        1. You will have only 15 seconds per each question.
+      </span>
       <span class="rule">2. Choose the correct answer and send.</span>
-      <span class="rule"
-        >3. The quiz ends when the wrong answer is given or the time runs
-        out.</span
-      >
+      <span class="rule">
+        3. The quiz ends when the wrong answer is given or the time runs out.
+      </span>
     </div>
     <div class="start-quiz">
-      <button class="start-quiz-button">Start Quiz</button>
+      <button @click="startGame" class="start-quiz-button">Start Quiz</button>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import { addUser } from '../core/db'
+
+export default {
+  name: 'Start',
+  data() {
+    return {
+      username: undefined,
+      isLogin: false,
+    }
+  },
+  mounted() {
+    if (localStorage.username) {
+      this.username = localStorage.username
+      this.isLogin = true
+    }
+  },
+  methods: {
+    startGame() {
+      if (!localStorage.username) {
+        addUser({ username: this.username, userAgent: navigator.userAgent })
+        localStorage.username = this.username
+      }
+
+      this.$router.push({
+        name: 'Game',
+        params: {
+          username: this.username,
+        },
+      })
+    },
+  },
+}
 </script>
 
 <style lang="scss" scoped>
@@ -52,27 +90,27 @@ export default {};
     color: #000000;
     text-align: center;
   }
-    form {
-      width: 80%;
-      display: inline-flex;
-      flex-direction: column;
+  form {
+    width: 80%;
+    display: inline-flex;
+    flex-direction: column;
 
-      .name-label {
-        font-family: Poppins;
-        font-style: normal;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 24px;
-        color: #696f79;
-        margin-bottom: 12px;
-      }
-      .name-input {
-        background: #ffffff;
-        -webkit-appearance: none;
-        box-shadow: 0px 15px 40px 5px #ededed;
-        // border: 1px solid #8692A6;
-        border-radius: 30px;
-        border: none;
+    .name-label {
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 24px;
+      color: #696f79;
+      margin-bottom: 12px;
+    }
+    .name-input {
+      background: #ffffff;
+      -webkit-appearance: none;
+      box-shadow: 0px 15px 40px 5px #ededed;
+      // border: 1px solid #8692A6;
+      border-radius: 30px;
+      border: none;
 
       font-family: Poppins;
       font-style: normal;
@@ -137,10 +175,10 @@ export default {};
     border-radius: 0;
     max-height: none;
 
-    .start-quiz{
+    .start-quiz {
       justify-content: center;
 
-      .start-quiz-button{
+      .start-quiz-button {
         margin: 0;
       }
     }

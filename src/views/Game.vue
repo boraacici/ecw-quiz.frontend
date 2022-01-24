@@ -56,6 +56,12 @@
 import Timer from "../component/Timer.vue";
 export default {
   components: { Timer },
+  props: ["username"],
+  mounted(){
+    if(!this.username){
+      this.$router.push({name: 'Start'})
+    }
+  }
 };
 </script>
 
