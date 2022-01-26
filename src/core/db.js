@@ -34,13 +34,13 @@ const db = getFirestore(app);
 //   return wordsList;
 // }
 
-export async function getQuestion(index) {
-  const wordsCol = collection(db, "Words");
-  const q = query(wordsCol, where("index", "==", index));
-  const wordsSnapshot = await getDocs(q);
-  const wordsList = wordsSnapshot.docs.map((doc) => doc.data());
-  return wordsList;
-}
+// export async function getQuestion(index) {
+//   const wordsCol = collection(db, "Words");
+//   const q = query(wordsCol, where("index", "==", index));
+//   const wordsSnapshot = await getDocs(q);
+//   const wordsList = wordsSnapshot.docs.map((doc) => doc.data());
+//   return wordsList;
+// }
 
 export async function getAnswer(answersIndexes) {
   const answers = [];
@@ -50,6 +50,14 @@ export async function getAnswer(answersIndexes) {
     answers.push(word);    
   } 
   return answers;
+}
+
+export async function getQuestionData(indexes) {
+  const wordsCol = collection(db, "Words");
+  const q = query(wordsCol, where("index", "in", indexes));
+  const wordsSnapshot = await getDocs(q);
+  const wordsList = wordsSnapshot.docs.map((doc) => doc.data());
+  return wordsList;
 }
 
 export async function getWordByIndex(e) {

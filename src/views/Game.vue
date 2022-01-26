@@ -3,31 +3,34 @@
     <div class="quiz-info-and-timer">
       <div class="quiz-info">
         <span class="title">Quiz</span>
-        <span class="timer"> {{ counter }} </span>
+        <span class="timer">{{ counter }}</span>
       </div>
       <span class="description">Answer the question below</span>
     </div>
     <div class="question-box">
-      <span class="question-number">Question 1</span>
+      <span class="question-number">Question {{questionIndexes.length + 1}}</span>
       <span class="question">
-        {{ question }}
+        {{ questionDefinition }}
       </span>
     </div>
     <div class="answer-container">
       <!-- <span class="choose">Choose answer</span> -->
-      <div class="answer-box">
+      <div
+        class="answer-box"
+        :style="{ opacity: answers.length === 4 ? 1 : 0 }"
+      >
         <div class="radio-box">
           <label
             class="container"
-            v-for="(word, index) in answers"
+            v-for="(answer, index) in answers"
             :key="index"
           >
-            <span class="answer">{{ word }}</span>
+            <span class="answer">{{ answer.word }}</span>
             <input
               type="radio"
               name="radio-answer"
-              :value="word"
-              v-model="selected"
+              :value="answer"
+              v-model="selectedAnswer"
             />
             <span class="checkmark"></span>
           </label>
@@ -41,129 +44,131 @@
       </div>
     </div>
     <div class="send-answer">
-      <button class="send-answer-button" @click="createQue">Send Answer</button>
+      <button class="send-answer-button" @click="sendAnswer">
+        Send Answer
+      </button>
     </div>
   </div>
 </template>
 
 <script>
-import Timer from "../component/Timer.vue";
-import { getQuestion, getAnswer, test } from "../core/db";
+import {  getQuestionData } from '../core/db'
 export default {
   data() {
     return {
       counter: 25,
-      questionIndexArr: [],
+      questionIndexes: [],
       questionIndex: null,
-      answerIndexArr: [],
-      answerIndex: null,
-      question: undefined,
+      answerIndexes: [],
       answers: [],
-      selected: "",
-    };
-  },
-  components: { Timer },
-  props: ["username"],
-  mounted() {
-    if (!this.username) {
-      this.$router.push({ name: "Start" });
+      selectedAnswer: '',
+      timerInterval: undefined,
     }
   },
+  props: ['username'],
+  async mounted() {
+    if (!this.username) {
+      this.$router.push({ name: 'Start' })
+    }
+
+    this.next()
+  },
   methods: {
-    createQue() {
-      this.answers = [];
-      this.answerIndexArr = [];
-      this.createQuestionIndex();
-      this.createAnswerIndex();
-      console.log(this.selected);
+    async next() {
+      this.clearQuestionData();
+      await this.getQuestion();
+      this.startTimer();
     },
-    async createQuestionIndex() {
-      this.questionIndex = Math.floor(Math.random() * 2748);
-      this.checkTheSameQue();
-      const questionData = await getQuestion(this.questionIndex);
-      this.question = questionData[0].definitions[0].definition;
-      this.answers.push(questionData[0].word);
-      console.log("correct answers:", questionData[0].word);
+    sendAnswer(){
+      // cevap dogru mu yanlis mi
+      // dogruysa
+      this.next();
+      // yanlissa
+      // go to leaderboard
     },
-    async createAnswerIndex() {
+    async getQuestion() {
+      this.questionIndex = this.createQuestionIndex()
+      await this.getAnswers()
+    },
+    async getAnswers() {
+      this.answerIndexes = [this.questionIndex]
+
       for (let i = 0; i < 3; i++) {
-        this.answerIndex = Math.floor(Math.random() * 2748);
-        this.checkTheSameAns();
+        this.answerIndexes.push(this.createAnswerIndex())
       }
-      const answerData = await getAnswer(this.answerIndexArr);
-      for (let i = 0; i < answerData.length; i++) {
-        const answer = answerData[i];
-        this.answers.push(answer[0].word);
-      }
-      console.log(this.answerIndexArr);
+
+      this.answers = await getQuestionData(this.answerIndexes)
       this.shuffle(this.answers);
     },
-    checkTheSameQue() {
-      if (!this.questionIndexArr.includes(this.questionIndex)) {
-        this.questionIndexArr.push(this.questionIndex);
+    createQuestionIndex() {
+      let questionIndex = Math.floor(Math.random() * 2748)
+      if (!this.questionIndexes.includes(questionIndex)) {
+        return questionIndex
       } else {
-        while (this.questionIndexArr.includes(this.questionIndex)) {
-          this.questionIndex = Math.floor(Math.random() * 2748);
-        }
-        this.questionIndexArr.push(this.questionIndex);
+        return this.createQuestionIndex()
       }
     },
-    checkTheSameAns() {
-      if (!this.answerIndexArr.includes(this.answerIndex)) {
-        this.checkAnsQueSame();
+    createAnswerIndex() {
+      let answerIndex = Math.floor(Math.random() * 2748)
+
+      if (!this.answerIndexes.includes(answerIndex)) {
+        return answerIndex
       } else {
-        while (this.answerIndexArr.includes(this.answerIndex)) {
-          this.answerIndex = Math.floor(Math.random() * 2748);
-        }
-        this.answerIndexArr.push(this.answerIndex);
-      }
-    },
-    checkAnsQueSame() {
-      if (this.answerIndex !== this.questionIndex) {
-        this.answerIndexArr.push(this.answerIndex);
-      } else {
-        while (this.answerIndex !== this.questionIndex) {
-          this.answerIndex = Math.floor(Math.random() * 2748);
-        }
-        this.answerIndexArr.push(this.answerIndex);
+        return this.createAnswerIndex()
       }
     },
     timer() {
       if (this.counter) {
-        this.counter = this.counter - 1;
+        this.counter = this.counter - 1
       } else if (this.counter == 0) {
-        return this.counter;
+        return this.counter
       }
     },
     startTimer() {
-      setInterval(this.timer, 1000);
+      if(this.timerInterval){
+        clearInterval(this.timerInterval)
+        this.counter = 25;
+      }
+      this.timerInterval = setInterval(this.timer, 1000)
+    },
+    clearQuestionData(){
+      if (this.questionIndex) {
+        this.questionIndexes.push(this.questionIndex);
+      }
+      this.answers = [];
+      this.answerIndexes = [];
     },
     shuffle(array) {
       let currentIndex = array.length,
-        randomIndex;
+        randomIndex
 
       // While there remain elements to shuffle...
       while (currentIndex != 0) {
         // Pick a remaining element...
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
+        randomIndex = Math.floor(Math.random() * currentIndex)
+        currentIndex--
 
         // And swap it with the current element.
-        [array[currentIndex], array[randomIndex]] = [
+        ;[array[currentIndex], array[randomIndex]] = [
           array[randomIndex],
           array[currentIndex],
-        ];
+        ]
       }
-      console.log(this.answers);
-      return array;
+
+      return array
     },
   },
-  mounted() {
-    this.startTimer();
-    this.createQuestionIndex();
-    this.createAnswerIndex();
-  },
-};
+  computed: {
+    questionDefinition(){
+      if(this.answers.length === 4){
+        const question = this.answers.find(a => a.index === this.questionIndex);
+        return question.definitions[0].definition;
+      }else{
+        return ''
+      }
+    }
+  }
+}
 </script>
 
 <style lang="scss">
@@ -303,7 +308,7 @@ export default {
 
         /* Create the indicator (the dot/circle - hidden when not checked) */
         .checkmark:after {
-          content: "";
+          content: '';
           position: absolute;
           display: none;
         }
