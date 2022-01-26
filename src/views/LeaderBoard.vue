@@ -16,7 +16,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(user, index) in leaderboardDocs" :key="index">
+        <tr v-for="(user, index) in topFive" :key="index">
           <th>{{ index + 1 }}</th>
           <th>{{ user.username }}</th>
           <th>{{ user.score }}</th>
@@ -40,21 +40,37 @@
 </template>
 
 <script>
-import { getLeaderboard } from '../core/db'
+import { getLeaderboard } from "../core/db";
 export default {
-  name: 'Leaderboard',
+  name: "Leaderboard",
   data() {
     return {
       leaderboardDocs: undefined,
-    }
+      topFive: undefined,
+      
+    };
+  },
+  methods: {
+    ranking() {
+      getLeaderboard().then((docs) => {
+        this.topFive = this.leaderboardDocs.slice(0,5);
+        console.log(this.topFive);
+        for (let i = 0; i < this.leaderboardDocs.length; i++) {
+          const user = this.leaderboardDocs[i];
+        }
+      });
+    },
   },
   created() {
     getLeaderboard().then((docs) => {
-      this.leaderboardDocs = docs
-      console.log(this.leaderboardDocs)
-    })
+      this.leaderboardDocs = docs;
+      // console.log(this.leaderboardDocs);
+    });
   },
-}
+  mounted(){
+    this.ranking();
+  }
+};
 </script>
 
 <style lang="scss" scoped>

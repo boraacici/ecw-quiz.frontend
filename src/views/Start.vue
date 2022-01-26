@@ -3,7 +3,7 @@
     <span class="title">English Common Words Quiz</span>
     <form action="">
       <label class="name-label" for="fname" v-if="isLogin">
-        Hello {{ username }}
+        Welcome again {{ username }}
       </label>
       <input
         v-if="!isLogin"

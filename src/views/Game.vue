@@ -3,14 +3,14 @@
     <div class="quiz-info-and-timer">
       <div class="quiz-info">
         <span class="title">Quiz</span>
-        <span class="description">Answer the question below</span>
+        <span class="timer"> {{ counter }} </span>
       </div>
-      <span class="timer">25</span>
+      <span class="description">Answer the question below</span>
     </div>
     <div class="question-box">
       <span class="question-number">Question 1</span>
       <span class="question">
-        Guy Bailey, Roy Hackett and Paul Stephenson made history in 1963
+        {{question}}
       </span>
     </div>
     <div class="answer-container">
@@ -47,21 +47,101 @@
       </div>
     </div>
     <div class="send-answer">
-      <button class="send-answer-button">Send Answer</button>
+      <button class="send-answer-button" @click="createQue">Send Answer</button>
     </div>
   </div>
 </template>
 
 <script>
 import Timer from "../component/Timer.vue";
+import { getQuestion, getAnswer, test } from "../core/db";
 export default {
+  data() {
+    return {
+      counter: 25,
+      questionIndexArr: [],
+      questionIndex: null,
+      answerIndexArr: [],
+      answerIndex: null,
+      question: undefined,
+      answer: [],
+    };
+  },
   components: { Timer },
   props: ["username"],
-  mounted(){
-    if(!this.username){
-      this.$router.push({name: 'Start'})
+  mounted() {
+    if (!this.username) {
+      this.$router.push({ name: "Start" });
     }
-  }
+  },
+  methods: {
+    createQue() {
+      this.createquestionIndexArr();
+      this.createAnswerIndex();
+    },
+    async createquestionIndexArr() {
+      this.questionIndex = Math.floor(Math.random() * 2748);
+      this.checkTheSameQue();
+      const questionData = await getQuestion(this.questionIndex);
+      this.question = questionData[0].definitions[0].definition;
+      this.answer.push(questionData[0].word);
+      console.log('answer:', this.answer);
+    },
+    async createAnswerIndex() {
+      for (let i = 0; i < 3; i++) {
+        this.answerIndex = Math.floor(Math.random() * 2748);
+        this.checkTheSameAns();
+      }
+      
+      const answerData = await getAnswer(this.answerIndexArr);
+      console.log('answerData:', answerData);
+    },
+    checkTheSameQue(){
+      if (!this.questionIndexArr.includes(this.questionIndex)) {
+        this.questionIndexArr.push(this.questionIndex);
+      } else {
+        while (this.questionIndexArr.includes(this.questionIndex)) {
+          this.questionIndex = Math.floor(Math.random() * 2748);
+        }
+        this.questionIndexArr.push(this.questionIndex);
+      }
+    },
+    checkTheSameAns() {
+      if (!this.answerIndexArr.includes(this.answerIndex)) {
+        this.checkAnsQueSame();
+      } else {
+        while (this.answerIndexArr.includes(this.answerIndex)) {
+          this.answerIndex = Math.floor(Math.random() * 2748);
+        }
+        this.answerIndexArr.push(this.answerIndex);
+      }
+    },
+    checkAnsQueSame() {
+      if (this.answerIndex !== this.questionIndex) {
+        this.answerIndexArr.push(this.answerIndex);
+      } else {
+        while (this.answerIndex !== this.questionIndex) {
+          this.answerIndex = Math.floor(Math.random() * 2748);
+        }
+        this.answerIndexArr.push(this.answerIndex);
+      }
+    },
+    timer() {
+      if (this.counter) {
+        this.counter = this.counter - 1;
+      } else if (this.counter == 0) {
+        return this.counter;
+      }
+    },
+    startTimer() {
+      setInterval(this.timer, 1000);
+    },
+  },
+  mounted() {
+    this.startTimer();
+    this.createquestionIndexArr();
+    this.createAnswerIndex();
+  },
 };
 </script>
 
@@ -80,11 +160,9 @@ export default {
   padding: 0 30px;
 
   .quiz-info-and-timer {
-    width: 90%;
-    display: inline-flex;
-    justify-content: space-between;
-
     .quiz-info {
+      display: flex;
+      justify-content: space-between;
       .title {
         display: block;
         font-family: Poppins;
@@ -95,22 +173,22 @@ export default {
         color: #696f79;
         margin-bottom: 10px;
       }
-      .description {
+      .timer {
         font-family: Poppins;
         font-style: normal;
         font-weight: normal;
-        font-size: 20px;
-        line-height: 22px;
-        color: #696f79;
+        font-size: 33px;
+        line-height: 49px;
+        color: #de6944;
       }
     }
-    .timer {
+    .description {
       font-family: Poppins;
       font-style: normal;
       font-weight: normal;
-      font-size: 33px;
-      line-height: 49px;
-      color: #de6944;
+      font-size: 20px;
+      line-height: 22px;
+      color: #696f79;
     }
   }
   .question-box {
