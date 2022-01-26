@@ -24,10 +24,9 @@
           >
             <span class="answer">{{ word }}</span>
             <input
-              @change="selectedAnswer($event)"
               type="radio"
-              checked="checked"
-              name="radio"
+              name="radio-answer"
+              :value="word"
               v-model="selected"
             />
             <span class="checkmark"></span>
@@ -71,10 +70,6 @@ export default {
     }
   },
   methods: {
-    selectedAnswer(event) {
-      var selectedAnswer = event.target.previousElementSibling.textContent;
-      console.log(selectedAnswer);
-    },
     createQue() {
       this.answers = [];
       this.answerIndexArr = [];
