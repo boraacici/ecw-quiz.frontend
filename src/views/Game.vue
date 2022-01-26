@@ -10,31 +10,20 @@
     <div class="question-box">
       <span class="question-number">Question 1</span>
       <span class="question">
-        {{question}}
+        {{ question }}
       </span>
     </div>
     <div class="answer-container">
       <!-- <span class="choose">Choose answer</span> -->
       <div class="answer-box">
         <div class="radio-box">
-          <label class="container">
-            <span class="answer">one</span>
+          <label
+            class="container"
+            v-for="(word, index) in answers"
+            :key="index"
+          >
+            <span class="answer">{{ word }}</span>
             <input type="radio" checked="checked" name="radio" />
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">
-            <span class="answer">two</span>
-            <input type="radio" name="radio" />
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">
-            <span class="answer">three</span>
-            <input type="radio" name="radio" />
-            <span class="checkmark"></span>
-          </label>
-          <label class="container">
-            <span class="answer">four</span>
-            <input type="radio" name="radio" />
             <span class="checkmark"></span>
           </label>
         </div>
@@ -64,7 +53,7 @@ export default {
       answerIndexArr: [],
       answerIndex: null,
       question: undefined,
-      answer: [],
+      answers: [],
     };
   },
   components: { Timer },
@@ -76,27 +65,32 @@ export default {
   },
   methods: {
     createQue() {
-      this.createquestionIndexArr();
+      this.answer = [];
+      this.answerIndexArr = [];
+      this.createQuestionIndex();
       this.createAnswerIndex();
     },
-    async createquestionIndexArr() {
+    async createQuestionIndex() {
       this.questionIndex = Math.floor(Math.random() * 2748);
       this.checkTheSameQue();
       const questionData = await getQuestion(this.questionIndex);
       this.question = questionData[0].definitions[0].definition;
-      this.answer.push(questionData[0].word);
-      console.log('answer:', this.answer);
+      this.answers.push(questionData[0].word);
+      console.log("correct answers:", questionData[0].word);
     },
     async createAnswerIndex() {
       for (let i = 0; i < 3; i++) {
         this.answerIndex = Math.floor(Math.random() * 2748);
         this.checkTheSameAns();
       }
-      
       const answerData = await getAnswer(this.answerIndexArr);
-      console.log('answerData:', answerData);
+      for (let i = 0; i < answerData.length; i++) {
+        const answer = answerData[i];
+        this.answers.push(answer[0].word);
+      }
+      this.shuffle(this.answers);
     },
-    checkTheSameQue(){
+    checkTheSameQue() {
       if (!this.questionIndexArr.includes(this.questionIndex)) {
         this.questionIndexArr.push(this.questionIndex);
       } else {
@@ -136,10 +130,29 @@ export default {
     startTimer() {
       setInterval(this.timer, 1000);
     },
+    shuffle(array) {
+      let currentIndex = array.length,
+        randomIndex;
+
+      // While there remain elements to shuffle...
+      while (currentIndex != 0) {
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+          array[randomIndex],
+          array[currentIndex],
+        ];
+      }
+      console.log(this.answers);
+      return array;
+    },
   },
   mounted() {
     this.startTimer();
-    this.createquestionIndexArr();
+    this.createQuestionIndex();
     this.createAnswerIndex();
   },
 };
@@ -305,6 +318,7 @@ export default {
       .secret-answer {
         display: inline-flex;
         flex-direction: column;
+        display: none;
 
         .secret-answer-text {
           font-family: Poppins;

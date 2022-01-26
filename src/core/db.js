@@ -34,12 +34,6 @@ const db = getFirestore(app);
 //   return wordsList;
 // }
 
-// export async function getAnswer(index) {
-//   // const answersData = [];
-
-//   console.log(index);
-// }
-
 export async function getQuestion(index) {
   const wordsCol = collection(db, "Words");
   const q = query(wordsCol, where("index", "==", index));
@@ -61,10 +55,8 @@ export async function getAnswer(answersIndexes) {
 export async function getWordByIndex(e) {
   const wordsCol = collection(db, "Words");
   const q = query(wordsCol, where("index", "==", e));
-  // console.log(e);
   const wordsSnapshot = await getDocs(q);
   const wordsList = wordsSnapshot.docs.map((doc) => doc.data());
-  console.log(wordsList);
   return wordsList;
 }
 
