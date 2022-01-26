@@ -23,7 +23,13 @@
             :key="index"
           >
             <span class="answer">{{ word }}</span>
-            <input type="radio" checked="checked" name="radio" />
+            <input
+              @change="selectedAnswer($event)"
+              type="radio"
+              checked="checked"
+              name="radio"
+              v-model="selected"
+            />
             <span class="checkmark"></span>
           </label>
         </div>
@@ -54,6 +60,7 @@ export default {
       answerIndex: null,
       question: undefined,
       answers: [],
+      selected: "",
     };
   },
   components: { Timer },
@@ -64,11 +71,16 @@ export default {
     }
   },
   methods: {
+    selectedAnswer(event) {
+      var selectedAnswer = event.target.previousElementSibling.textContent;
+      console.log(selectedAnswer);
+    },
     createQue() {
-      this.answer = [];
+      this.answers = [];
       this.answerIndexArr = [];
       this.createQuestionIndex();
       this.createAnswerIndex();
+      console.log(this.selected);
     },
     async createQuestionIndex() {
       this.questionIndex = Math.floor(Math.random() * 2748);
@@ -88,6 +100,7 @@ export default {
         const answer = answerData[i];
         this.answers.push(answer[0].word);
       }
+      console.log(this.answerIndexArr);
       this.shuffle(this.answers);
     },
     checkTheSameQue() {
