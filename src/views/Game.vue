@@ -194,15 +194,16 @@ export default {
       return array;
     },
     async goLeaderboard() {
-      this.userData = await addLeaderboard({
+      let userScoreData = {
         username: this.username,
         score: this.questionIndexes.length,
-      });
+      }
+      this.userData = await addLeaderboard(userScoreData);
       //
       this.$router.push({
         name: "LeaderBoard",
         params: {
-          userData: this.userData,
+          userData: {...userScoreData, id: this.userData.id },
         },
       });
     },
