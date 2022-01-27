@@ -8,7 +8,9 @@
       <span class="description">Answer the question below</span>
     </div>
     <div class="question-box">
-      <span class="question-number">Question {{questionIndexes.length + 1}}</span>
+      <span class="question-number"
+        >Question {{ questionIndexes.length + 1 }}</span
+      >
       <span class="question">
         {{ questionDefinition }}
       </span>
@@ -52,7 +54,7 @@
 </template>
 
 <script>
-import {  getQuestionData } from '../core/db'
+import { getQuestionData } from "../core/db";
 export default {
   data() {
     return {
@@ -61,17 +63,16 @@ export default {
       questionIndex: null,
       answerIndexes: [],
       answers: [],
-      selectedAnswer: '',
+      selectedAnswer: "",
       timerInterval: undefined,
-    }
+    };
   },
-  props: ['username'],
+  props: ["username"],
   async mounted() {
     if (!this.username) {
-      this.$router.push({ name: 'Start' })
+      this.$router.push({ name: "Start" });
     }
-
-    this.next()
+    this.next();
   },
   methods: {
     async next() {
@@ -79,59 +80,66 @@ export default {
       await this.getQuestion();
       this.startTimer();
     },
-    sendAnswer(){
-      // cevap dogru mu yanlis mi
-      // dogruysa
-      this.next();
-      // yanlissa
-      // go to leaderboard
+    sendAnswer() {
+      if (this.selectedAnswer.index == this.questionIndex) {
+        this.next();
+      } else {
+        //stop timer
+        this.stopTimer();
+        //show correct answer
+
+        //change button go to leaderboard
+      }
     },
     async getQuestion() {
-      this.questionIndex = this.createQuestionIndex()
-      await this.getAnswers()
+      this.questionIndex = this.createQuestionIndex();
+      await this.getAnswers();
     },
     async getAnswers() {
-      this.answerIndexes = [this.questionIndex]
+      this.answerIndexes = [this.questionIndex];
 
       for (let i = 0; i < 3; i++) {
-        this.answerIndexes.push(this.createAnswerIndex())
+        this.answerIndexes.push(this.createAnswerIndex());
       }
 
-      this.answers = await getQuestionData(this.answerIndexes)
+      this.answers = await getQuestionData(this.answerIndexes);
       this.shuffle(this.answers);
     },
     createQuestionIndex() {
-      let questionIndex = Math.floor(Math.random() * 2748)
+      let questionIndex = Math.floor(Math.random() * 2748);
       if (!this.questionIndexes.includes(questionIndex)) {
-        return questionIndex
+        return questionIndex;
       } else {
-        return this.createQuestionIndex()
+        return this.createQuestionIndex();
       }
     },
     createAnswerIndex() {
-      let answerIndex = Math.floor(Math.random() * 2748)
+      let answerIndex = Math.floor(Math.random() * 2748);
 
       if (!this.answerIndexes.includes(answerIndex)) {
-        return answerIndex
+        return answerIndex;
       } else {
-        return this.createAnswerIndex()
+        return this.createAnswerIndex();
       }
     },
     timer() {
       if (this.counter) {
-        this.counter = this.counter - 1
+        this.counter = this.counter - 1;
       } else if (this.counter == 0) {
-        return this.counter
+        return this.counter;
       }
     },
     startTimer() {
-      if(this.timerInterval){
-        clearInterval(this.timerInterval)
+      if (this.timerInterval) {
+        clearInterval(this.timerInterval);
         this.counter = 25;
       }
-      this.timerInterval = setInterval(this.timer, 1000)
+      this.timerInterval = setInterval(this.timer, 1000);
     },
-    clearQuestionData(){
+    stopTimer() {
+      clearInterval(this.timerInterval);
+    },
+    clearQuestionData() {
       if (this.questionIndex) {
         this.questionIndexes.push(this.questionIndex);
       }
@@ -140,35 +148,34 @@ export default {
     },
     shuffle(array) {
       let currentIndex = array.length,
-        randomIndex
-
+        randomIndex;
       // While there remain elements to shuffle...
       while (currentIndex != 0) {
         // Pick a remaining element...
-        randomIndex = Math.floor(Math.random() * currentIndex)
-        currentIndex--
-
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
         // And swap it with the current element.
-        ;[array[currentIndex], array[randomIndex]] = [
+        [array[currentIndex], array[randomIndex]] = [
           array[randomIndex],
           array[currentIndex],
-        ]
+        ];
       }
-
-      return array
+      return array;
     },
   },
   computed: {
-    questionDefinition(){
-      if(this.answers.length === 4){
-        const question = this.answers.find(a => a.index === this.questionIndex);
+    questionDefinition() {
+      if (this.answers.length === 4) {
+        const question = this.answers.find(
+          (a) => a.index === this.questionIndex
+        );
         return question.definitions[0].definition;
-      }else{
-        return ''
+      } else {
+        return "";
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style lang="scss">
@@ -248,9 +255,8 @@ export default {
     }
     .answer-box {
       display: flex;
-      width: 70%;
       justify-content: space-between;
-      margin-top: 20px;
+      width: 70%;
 
       .radio-box {
         display: inline-flex;
@@ -308,7 +314,7 @@ export default {
 
         /* Create the indicator (the dot/circle - hidden when not checked) */
         .checkmark:after {
-          content: '';
+          content: "";
           position: absolute;
           display: none;
         }
@@ -331,15 +337,14 @@ export default {
       .secret-answer {
         display: inline-flex;
         flex-direction: column;
-        display: none;
 
         .secret-answer-text {
           font-family: Poppins;
           font-style: normal;
           font-weight: bold;
-          font-size: 9px;
-          transform-origin: center;
-          transform: scale(2);
+          font-size: 13px;
+          // transform-origin: center;
+          // transform: scale(2);
           line-height: 27px;
           color: #f24e1e;
 
@@ -380,7 +385,6 @@ export default {
   .quiz-box {
     border-radius: 0;
     max-height: none;
-
     .send-answer {
       justify-content: center;
 
@@ -388,6 +392,9 @@ export default {
         margin: 0;
       }
     }
+  }
+  .answer-box {
+    width: 100% !important;
   }
 }
 </style>
