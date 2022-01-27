@@ -37,11 +37,18 @@
             <span class="checkmark"></span>
           </label>
         </div>
-        <div class="secret-answer">
-          <span class="secret-answer-text">Your Answer</span>
-          <span class="secret-answer-text correct">Correct Answer</span>
-          <span class="secret-answer-text">Your Answer</span>
-          <span class="secret-answer-text">Your Answer</span>
+        <div class="secret-answer" v-if="isShowCorrect">
+          <span
+            class="secret-answer-text"
+            :class="{ correct: answer.index === questionIndex }"
+            :style="{ opacity: answer.index === questionIndex || answer.index === selectedAnswer.index ? 1 : 0 }"
+            v-for="(answer, index) in answers"
+            :key="index"
+          >
+            {{
+              answer.index === questionIndex ? 'Correct Answer' : 'Your Answer'
+            }}
+          </span>
         </div>
       </div>
     </div>
@@ -65,6 +72,7 @@ export default {
       answers: [],
       selectedAnswer: "",
       timerInterval: undefined,
+      isShowCorrect: false,
     };
   },
   props: ["username"],
@@ -86,7 +94,7 @@ export default {
       } else {
         //stop timer
         this.stopTimer();
-        //show correct answer
+        this.isShowCorrect = true;
 
         //change button go to leaderboard
       }
