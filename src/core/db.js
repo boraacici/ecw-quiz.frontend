@@ -25,23 +25,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// export async function getWords() {
-//   const wordsCol = collection(db, "words");
-//   const q = query(wordsCol, where("index", "==", "1"));
-//   // console.log(q);
-//   const wordsSnapshot = await getDocs(wordsCol);
-//   const wordsList = wordsSnapshot.docs.map((doc) => doc.data());
-//   return wordsList;
-// }
-
-// export async function getQuestion(index) {
-//   const wordsCol = collection(db, "Words");
-//   const q = query(wordsCol, where("index", "==", index));
-//   const wordsSnapshot = await getDocs(q);
-//   const wordsList = wordsSnapshot.docs.map((doc) => doc.data());
-//   return wordsList;
-// }
-
 export async function getAnswer(answersIndexes) {
   const answers = [];
   for (let i = 0; i < answersIndexes.length; i++) {
@@ -78,6 +61,10 @@ export async function getLeaderboard() {
 
 export async function addUser(userData) {
   const docRef = await addDoc(collection(db, "Users"), userData);
+  return docRef;
+}
 
+export async function addLeaderboard(userData) {
+  const docRef = await addDoc(collection(db, "Leaderboard"), userData);
   return docRef;
 }

@@ -47,29 +47,20 @@ export default {
     return {
       leaderboardDocs: undefined,
       topFive: undefined,
-      
     };
   },
+  props: ["userData"],
   methods: {
-    ranking() {
+    getTopList() {
       getLeaderboard().then((docs) => {
-        this.topFive = this.leaderboardDocs.slice(0,5);
-        console.log(this.topFive);
-        for (let i = 0; i < this.leaderboardDocs.length; i++) {
-          const user = this.leaderboardDocs[i];
-        }
+        this.leaderboardDocs = docs;
+        this.topFive = this.leaderboardDocs.slice(0, 5);
       });
     },
   },
-  created() {
-    getLeaderboard().then((docs) => {
-      this.leaderboardDocs = docs;
-      // console.log(this.leaderboardDocs);
-    });
+  mounted() {
+    this.getTopList();
   },
-  mounted(){
-    this.ranking();
-  }
 };
 </script>
 

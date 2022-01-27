@@ -41,19 +41,36 @@
           <span
             class="secret-answer-text"
             :class="{ correct: answer.index === questionIndex }"
-            :style="{ opacity: answer.index === questionIndex || answer.index === selectedAnswer.index ? 1 : 0 }"
+            :style="{
+              opacity:
+                answer.index === questionIndex ||
+                answer.index === selectedAnswer.index
+                  ? 1
+                  : 0,
+            }"
             v-for="(answer, index) in answers"
             :key="index"
           >
             {{
-              answer.index === questionIndex ? 'Correct Answer' : 'Your Answer'
+              answer.index === questionIndex ? "Correct Answer" : "Your Answer"
             }}
           </span>
         </div>
       </div>
     </div>
-    <div class="send-answer">
-      <button class="send-answer-button" @click="sendAnswer">
+    <div class="button-box">
+      <button
+        class="button go-leaderboard"
+        v-show="isShowCorrect"
+        @click="goLeaderboard"
+      >
+        Go to Leaderboard
+      </button>
+      <button
+        class="button send-answer"
+        v-show="!isShowCorrect"
+        @click="sendAnswer"
+      >
         Send Answer
       </button>
     </div>
@@ -61,7 +78,7 @@
 </template>
 
 <script>
-import { getQuestionData } from "../core/db";
+import { getQuestionData, addLeaderboard } from "../core/db";
 export default {
   data() {
     return {
@@ -73,6 +90,7 @@ export default {
       selectedAnswer: "",
       timerInterval: undefined,
       isShowCorrect: false,
+      userData: undefined,
     };
   },
   props: ["username"],
@@ -89,14 +107,15 @@ export default {
       this.startTimer();
     },
     sendAnswer() {
-      if (this.selectedAnswer.index == this.questionIndex) {
-        this.next();
+      if (this.selectedAnswer !== "") {
+        if (this.selectedAnswer.index == this.questionIndex) {
+          this.next();
+        } else {
+          this.stopTimer();
+          this.isShowCorrect = true;
+        }
       } else {
-        //stop timer
-        this.stopTimer();
-        this.isShowCorrect = true;
-
-        //change button go to leaderboard
+        return;
       }
     },
     async getQuestion() {
@@ -134,6 +153,7 @@ export default {
       if (this.counter) {
         this.counter = this.counter - 1;
       } else if (this.counter == 0) {
+        this.timesUp();
         return this.counter;
       }
     },
@@ -146,6 +166,9 @@ export default {
     },
     stopTimer() {
       clearInterval(this.timerInterval);
+    },
+    timesUp() {
+      this.isShowCorrect = true;
     },
     clearQuestionData() {
       if (this.questionIndex) {
@@ -169,6 +192,19 @@ export default {
         ];
       }
       return array;
+    },
+    async goLeaderboard() {
+      this.userData = await addLeaderboard({
+        username: this.username,
+        score: this.questionIndexes.length,
+      });
+      //
+      this.$router.push({
+        name: "LeaderBoard",
+        params: {
+          userData: this.userData,
+        },
+      });
     },
   },
   computed: {
@@ -365,27 +401,28 @@ export default {
       }
     }
   }
-  .send-answer {
+  .button-box {
     width: 100%;
     display: inline-flex;
     justify-content: flex-end;
 
-    .send-answer-button {
+    .button {
       font-family: Poppins;
       font-style: normal;
       font-weight: bold;
       font-size: 22px;
       line-height: 33px;
       color: #ffffff;
-
       background: #8692a6;
       border-radius: 30px;
-
       padding: 16px 32px;
       border: none;
-
       margin-right: 52px;
     }
+    // .go-leaderboard {
+    //   // opacity: 0;
+    //   display: none;
+    // }
   }
 }
 
@@ -393,11 +430,11 @@ export default {
   .quiz-box {
     border-radius: 0;
     max-height: none;
-    .send-answer {
+    .button-box {
       justify-content: center;
 
-      .send-answer-button {
-        margin: 0;
+      .button {
+        margin-right: 0;
       }
     }
   }
