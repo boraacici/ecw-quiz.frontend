@@ -3,7 +3,7 @@
     <span class="title">English Common Words Quiz</span>
     <form action="">
       <label class="name-label" for="fname" v-if="isLogin">
-        Welcome again {{ username }}
+        Welcome {{ username }}
       </label>
       <input
         v-if="!isLogin"
@@ -11,6 +11,7 @@
         type="text"
         v-model="username"
         placeholder="Enter your name"
+        maxlength="18" size="18"
       />
     </form>
     <div class="rules">
@@ -96,13 +97,16 @@ export default {
     flex-direction: column;
 
     .name-label {
-      font-family: Poppins;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 16px;
-      line-height: 24px;
-      color: #696f79;
-      margin-bottom: 12px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 22px;
+    color: #8692a6;
+
+    .bold{
+      font-weight: bold;
+    }
     }
     .name-input {
       background: #ffffff;
