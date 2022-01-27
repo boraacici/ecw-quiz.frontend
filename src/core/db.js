@@ -51,11 +51,11 @@ export async function getWordByIndex(e) {
   return wordsList;
 }
 
-export async function getLeaderboard() {
+export async function getTop5Score() {
   const leaderboardCol = collection(db, "Leaderboard");
-  const q = query(leaderboardCol, orderBy("score", "desc"));
+  const q = query(leaderboardCol, orderBy("score", "desc"), limit(5));
   const leaderboardSnapshot = await getDocs(q);
-  const leaderboardList = leaderboardSnapshot.docs.map((doc) => doc.data());
+  const leaderboardList = leaderboardSnapshot.docs.map(function(doc) { return { ...doc.data(), id: doc.id}});
   return leaderboardList;
 }
 

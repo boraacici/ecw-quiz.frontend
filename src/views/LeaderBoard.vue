@@ -3,8 +3,10 @@
     <div class="leader-board-box">
       <div class="title">Leaderboard</div>
       <div class="leader-board-text">
-        Congratulations Sadık ! Your score:
-        <span class="bold">20</span>
+        Congratulations
+        <span class="bold">{{ userData.username }}</span>
+        ! Your score:
+        <span class="bold">{{ userData.score }}</span>
       </div>
     </div>
     <table class="content-table">
@@ -16,52 +18,68 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(user, index) in topFive" :key="index">
+        <tr
+          :class="{ 'active-row': user.id === userData.id }"
+          v-for="(user, index) in top5Scores"
+          :key="index"
+        >
           <th>{{ index + 1 }}</th>
           <th>{{ user.username }}</th>
           <th>{{ user.score }}</th>
         </tr>
-        <tr>
+        <tr v-if="!isUserTop5">
           <th>...</th>
           <th>...</th>
           <th>...</th>
         </tr>
-        <tr class="active-row">
-          <th>99</th>
-          <th>Kuntay</th>
-          <th>31</th>
+        <tr class="active-row" v-if="!isUserTop5">
+          <th></th>
+          <th>{{ this.userData.username }}</th>
+          <th>{{ this.userData.score }}</th>
         </tr>
       </tbody>
     </table>
     <div class="try-again">
-      <button class="try-again-button">Try Again</button>
+      <button class="try-again-button" @click="tryAgain">Try Again</button>
     </div>
   </div>
 </template>
 
 <script>
-import { getLeaderboard } from "../core/db";
+import { getTop5Score } from '../core/db'
 export default {
-  name: "Leaderboard",
+  name: 'Leaderboard',
   data() {
     return {
-      leaderboardDocs: undefined,
-      topFive: undefined,
-    };
+      top5Scores: undefined,
+      isUserTop5: false,
+    }
   },
-  props: ["userData"],
+  props: ['userData'],
   methods: {
-    getTopList() {
-      getLeaderboard().then((docs) => {
-        this.leaderboardDocs = docs;
-        this.topFive = this.leaderboardDocs.slice(0, 5);
-      });
+    tryAgain() {
+      this.$router.push({
+        name: 'Game',
+        params: {
+          username: localStorage.username,
+        },
+      })
     },
   },
-  mounted() {
-    this.getTopList();
+  async created() {
+    if (!this.userData) {
+      this.$router.push({
+        name: 'Start',
+      })
+    }
+
+    this.top5Scores = await getTop5Score()
+
+    if (this.top5Scores.indexOf((doc) => doc.id === this.userData.id) !== -1) {
+      this.isUserTop5 = true
+    }
   },
-};
+}
 </script>
 
 <style lang="scss" scoped>
