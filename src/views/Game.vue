@@ -445,18 +445,18 @@ export default {
     max-height: none;
 
     .question-box{
-      margin-top: 30px;
+      margin-top: 25px;
     }
 
     .answer-container{
-      margin-top: 30px;
+      margin-top: 25px;
     }
     
     .button-box {
       justify-content: center;
-      top: 475px;
+      top: 440px;
       bottom: unset;
-      margin-top: 30px;
+      margin-top: 25px;
 
       .button {
         margin-right: 0;
