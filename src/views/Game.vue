@@ -443,10 +443,20 @@ export default {
   .quiz-box {
     border-radius: 0;
     max-height: none;
+
+    .question-box{
+      margin-top: 30px;
+    }
+
+    .answer-container{
+      margin-top: 30px;
+    }
+    
     .button-box {
       justify-content: center;
-      top: 540px;
+      top: 475px;
       bottom: unset;
+      margin-top: 30px;
 
       .button {
         margin-right: 0;
