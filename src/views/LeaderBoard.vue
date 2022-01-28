@@ -40,7 +40,6 @@
       </tbody>
     </table>
     <div class="try-again">
-      <button class="button" @click="share">Share</button>
       <button class="button" @click="tryAgain">Try Again</button>
     </div>
   </div>
