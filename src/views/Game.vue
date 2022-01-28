@@ -235,7 +235,6 @@ export default {
   display: flex;
   flex-direction: column;
   padding: 0 30px;
-  row-gap: 50px;
   padding-top: 40px;
   box-sizing: border-box;
   position: relative;
@@ -273,6 +272,7 @@ export default {
     }
   }
   .question-box {
+    margin-top: 50px;
     .question-number {
       display: block;
       font-family: Poppins;
@@ -295,6 +295,8 @@ export default {
     }
   }
   .answer-container {
+    margin-top: 50px;
+
     .choose {
       font-family: Poppins;
       font-style: normal;
@@ -443,7 +445,8 @@ export default {
     max-height: none;
     .button-box {
       justify-content: center;
-      bottom: 20px;
+      top: 540px;
+      bottom: unset;
 
       .button {
         margin-right: 0;
