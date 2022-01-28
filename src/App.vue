@@ -17,11 +17,9 @@
   overflow: hidden;
 }
 
-@media (hover: none) {
+@media screen and (max-width: 569px) {
   .container {
     height: calc(100vh - 80px);
-    justify-content: flex-start;
-    align-items: flex-start;
   }
 }
 </style>

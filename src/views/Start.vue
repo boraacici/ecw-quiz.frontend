@@ -99,7 +99,7 @@ export default {
     .name-label {
     font-family: Poppins;
     font-style: normal;
-    font-weight: normal;
+    font-weight: 500;
     font-size: 20px;
     line-height: 22px;
     color: #8692a6;
@@ -145,7 +145,7 @@ export default {
       font-style: normal;
       font-weight: normal;
       font-size: 18px;
-      line-height: 22px;
+      line-height: 26px;
       color: #8692a6;
     }
   }
@@ -174,10 +174,16 @@ export default {
   }
 }
 
-@media (hover: none) {
+@media screen and (max-width: 569px) {
   .login-box {
     border-radius: 0;
     max-height: none;
+
+    .rules{
+      .rule{
+        line-height: 22px;
+      }
+    }
 
     .start-quiz {
       justify-content: center;

@@ -197,13 +197,13 @@ export default {
       let userScoreData = {
         username: this.username,
         score: this.questionIndexes.length,
-      }
+      };
       this.userData = await addLeaderboard(userScoreData);
       //
       this.$router.push({
         name: "LeaderBoard",
         params: {
-          userData: {...userScoreData, id: this.userData.id },
+          userData: { ...userScoreData, id: this.userData.id },
         },
       });
     },
@@ -285,7 +285,7 @@ export default {
       font-style: normal;
       font-weight: normal;
       font-size: 18px;
-      line-height: 22px;
+      line-height: 26px;
       color: #696f79;
     }
   }
@@ -427,7 +427,7 @@ export default {
   }
 }
 
-@media (hover: none) {
+@media screen and (max-width: 569px) {
   .quiz-box {
     border-radius: 0;
     max-height: none;
@@ -438,6 +438,9 @@ export default {
         margin-right: 0;
       }
     }
+  }
+  .question {
+    line-height: 22px !important;
   }
   .answer-box {
     width: 100% !important;
