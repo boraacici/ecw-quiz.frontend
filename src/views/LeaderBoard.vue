@@ -40,7 +40,8 @@
       </tbody>
     </table>
     <div class="try-again">
-      <button class="try-again-button" @click="tryAgain">Try Again</button>
+      <button class="button" @click="share">Share</button>
+      <button class="button" @click="tryAgain">Try Again</button>
     </div>
   </div>
 </template>
@@ -158,38 +159,29 @@ export default {
   .try-again {
     width: 100%;
     display: inline-flex;
-    justify-content: flex-end;
+    justify-content: space-around;
 
-    .try-again-button {
+    .button {
       font-family: Poppins;
       font-style: normal;
       font-weight: bold;
       font-size: 22px;
       line-height: 33px;
       color: #ffffff;
-
       background: #8692a6;
       border-radius: 30px;
-
       padding: 16px 32px;
       border: none;
-
-      margin-right: 52px;
     }
   }
 }
-
-@media (hover: none) {
+@media screen and (max-width: 569px) {
   .leader-board-container {
     border-radius: 0;
     max-height: none;
 
     .try-again {
       justify-content: center;
-
-      .try-again-button {
-        margin: 0;
-      }
     }
   }
 }
