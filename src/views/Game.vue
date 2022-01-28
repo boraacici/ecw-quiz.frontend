@@ -443,7 +443,7 @@ export default {
     max-height: none;
     .button-box {
       justify-content: center;
-      bottom: -40px;
+      bottom: 0px;
 
       .button {
         margin-right: 0;
