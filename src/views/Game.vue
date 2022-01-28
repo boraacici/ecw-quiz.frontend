@@ -11,7 +11,7 @@
       <span class="question-number"
         >Question {{ questionIndexes.length + 1 }}</span
       >
-      <span class="question">
+      <span class="question" :key="questionDefinition">
         {{ questionDefinition }}
       </span>
     </div>
@@ -234,8 +234,11 @@ export default {
   border-radius: 30px;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
   padding: 0 30px;
+  row-gap: 50px;
+  padding-top: 40px;
+  box-sizing: border-box;
+  position: relative;
 
   .quiz-info-and-timer {
     .quiz-info {
@@ -281,12 +284,14 @@ export default {
       margin-bottom: 20px;
     }
     .question {
+      display: block;
       font-family: Poppins;
       font-style: normal;
       font-weight: normal;
       font-size: 18px;
       line-height: 26px;
       color: #696f79;
+      animation: showing 0.3s forwards;
     }
   }
   .answer-container {
@@ -327,6 +332,8 @@ export default {
           letter-spacing: 0em;
           text-align: left;
           color: #696f79;
+          opacity: 0;
+          animation: showing 0.3s 0.3s forwards
         }
 
         /* Hide the browser's default radio button */
@@ -406,6 +413,9 @@ export default {
     width: 100%;
     display: inline-flex;
     justify-content: flex-end;
+    position: absolute;
+    bottom: 40px;
+    left: 0;
 
     .button {
       font-family: Poppins;
@@ -444,6 +454,17 @@ export default {
   }
   .answer-box {
     width: 100% !important;
+  }
+}
+
+@keyframes showing {
+  from{
+    opacity: 0;
+    transform: translate(0px, 20px);
+  }
+  to{
+      opacity: 1;
+      transform: translate(0px, 0px);
   }
 }
 </style>
