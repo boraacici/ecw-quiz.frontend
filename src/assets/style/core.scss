@@ -46,7 +46,7 @@ body {
 }
 
 
-*{
+*:not(input){
   user-select: none;
 }
 
