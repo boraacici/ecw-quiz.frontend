@@ -49,6 +49,7 @@ export default {
   },
   methods: {
     startGame() {
+      if(this.username){
       if (!localStorage.username) {
         addUser({ username: this.username, userAgent: navigator.userAgent })
         localStorage.username = this.username
@@ -59,7 +60,7 @@ export default {
         params: {
           username: this.username,
         },
-      })
+      })}
     },
   },
 }
