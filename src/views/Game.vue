@@ -58,7 +58,7 @@
         </div>
       </div>
     </div>
-    <div class="button-box" :key="questionDefinition + 'button'">
+    <div class="button-box" v-if="answers.length === 4" :key="questionDefinition + 'button'">
       <button
         class="button go-leaderboard"
         v-show="isShowCorrect"
