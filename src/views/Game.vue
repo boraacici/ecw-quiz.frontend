@@ -58,7 +58,7 @@
         </div>
       </div>
     </div>
-    <div class="button-box">
+    <div class="button-box" :key="questionDefinition + 'button'">
       <button
         class="button go-leaderboard"
         v-show="isShowCorrect"
@@ -454,9 +454,10 @@ export default {
     
     .button-box {
       justify-content: center;
-      top: 440px;
-      bottom: unset;
+      position: static;
       margin-top: 25px;
+      opacity: 0;
+      animation: showing 0.3s 0.6s forwards;
 
       .button {
         margin-right: 0;
