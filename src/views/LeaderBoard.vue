@@ -46,40 +46,40 @@
 </template>
 
 <script>
-import { getTop5Score } from '../core/db'
+import { getTop5Score } from "../core/db";
 export default {
-  name: 'Leaderboard',
+  name: "Leaderboard",
   data() {
     return {
       top5Scores: undefined,
       isUserTop5: false,
-    }
+    };
   },
-  props: ['userData'],
+  props: ["userData"],
   methods: {
     tryAgain() {
       this.$router.push({
-        name: 'Game',
+        name: "Game",
         params: {
           username: localStorage.username,
         },
-      })
+      });
     },
   },
   async created() {
     if (!this.userData) {
       this.$router.push({
-        name: 'Start',
-      })
+        name: "Start",
+      });
     }
 
-    this.top5Scores = await getTop5Score()
+    this.top5Scores = await getTop5Score();
 
     if (this.top5Scores.indexOf((doc) => doc.id === this.userData.id) !== -1) {
-      this.isUserTop5 = true
+      this.isUserTop5 = true;
     }
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -182,6 +182,11 @@ export default {
     .try-again {
       justify-content: center;
     }
+  }
+  .button {
+    margin-right: 0;
+    font-size: 18px !important;
+    padding: 12px 26px !important;
   }
 }
 </style>

@@ -11,7 +11,8 @@
         type="text"
         v-model="username"
         placeholder="Enter your name"
-        maxlength="18" size="18"
+        maxlength="18"
+        size="18"
       />
     </form>
     <div class="rules">
@@ -31,39 +32,40 @@
 </template>
 
 <script>
-import { addUser } from '../core/db'
+import { addUser } from "../core/db";
 
 export default {
-  name: 'Start',
+  name: "Start",
   data() {
     return {
       username: undefined,
       isLogin: false,
-    }
+    };
   },
   mounted() {
     if (localStorage.username) {
-      this.username = localStorage.username
-      this.isLogin = true
+      this.username = localStorage.username;
+      this.isLogin = true;
     }
   },
   methods: {
     startGame() {
-      if(this.username){
-      if (!localStorage.username) {
-        addUser({ username: this.username, userAgent: navigator.userAgent })
-        localStorage.username = this.username
-      }
+      if (this.username) {
+        if (!localStorage.username) {
+          addUser({ username: this.username, userAgent: navigator.userAgent });
+          localStorage.username = this.username;
+        }
 
-      this.$router.push({
-        name: 'Game',
-        params: {
-          username: this.username,
-        },
-      })}
+        this.$router.push({
+          name: "Game",
+          params: {
+            username: this.username,
+          },
+        });
+      }
     },
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -98,16 +100,16 @@ export default {
     flex-direction: column;
 
     .name-label {
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 22px;
-    color: #8692a6;
+      font-family: Poppins;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 22px;
+      color: #8692a6;
 
-    .bold{
-      font-weight: bold;
-    }
+      .bold {
+        font-weight: bold;
+      }
     }
     .name-input {
       background: #ffffff;
@@ -180,8 +182,8 @@ export default {
     border-radius: 0;
     max-height: none;
 
-    .rules{
-      .rule{
+    .rules {
+      .rule {
         line-height: 22px;
       }
     }
@@ -193,6 +195,11 @@ export default {
         margin: 0;
       }
     }
+  }
+  .start-quiz-button {
+    margin-right: 0;
+    font-size: 18px !important;
+    padding: 12px 26px !important;
   }
 }
 </style>

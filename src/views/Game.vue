@@ -443,24 +443,31 @@ export default {
   .quiz-box {
     border-radius: 0;
     max-height: none;
+    padding-top: 0px;
 
     .question-box{
-      margin-top: 25px;
+      margin-top: 15px;
+    }
+
+    .question-number{
+      margin-bottom: 10px !important;
     }
 
     .answer-container{
-      margin-top: 25px;
+      margin-top: 15px;
     }
     
     .button-box {
       justify-content: center;
       position: static;
-      margin-top: 25px;
+      margin-top: 15px;
       opacity: 0;
       animation: showing 0.3s 0.6s forwards;
 
       .button {
         margin-right: 0;
+        font-size: 18px;
+        padding: 12px 26px;
       }
     }
   }
