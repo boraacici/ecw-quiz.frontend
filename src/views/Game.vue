@@ -16,7 +16,6 @@
       </span>
     </div>
     <div class="answer-container">
-      <!-- <span class="choose">Choose answer</span> -->
       <div
         class="answer-box"
         :style="{ opacity: answers.length === 4 ? 1 : 0 }"
@@ -397,8 +396,6 @@ export default {
           font-style: normal;
           font-weight: bold;
           font-size: 13px;
-          // transform-origin: center;
-          // transform: scale(2);
           line-height: 27px;
           color: #f24e1e;
 
@@ -432,35 +429,31 @@ export default {
       border: none;
       margin-right: 52px;
     }
-    // .go-leaderboard {
-    //   // opacity: 0;
-    //   display: none;
-    // }
   }
 }
 
 @media screen and (max-width: 569px) {
-  .quiz-box {
+    .quiz-box {
     border-radius: 0;
     max-height: none;
-    padding-top: 0px;
+    padding-top: 20px;
 
     .question-box{
-      margin-top: 15px;
+      margin-top: 25px;
     }
 
     .question-number{
-      margin-bottom: 10px !important;
+      margin-bottom: 20px !important;
     }
 
     .answer-container{
-      margin-top: 15px;
+      margin-top: 25px;
     }
     
     .button-box {
       justify-content: center;
       position: static;
-      margin-top: 15px;
+      margin-top: 25px;
       opacity: 0;
       animation: showing 0.3s 0.6s forwards;
 
@@ -477,7 +470,68 @@ export default {
   .answer-box {
     width: 100% !important;
   }
+  @media  screen and  (max-height: 667px)  {
+  .quiz-box {
+    padding-top: 0px;
+
+    .question-box{
+      margin-top: 15px;
+    }
+
+    .question-number{
+      margin-bottom: 10px !important;
+    }
+
+    .answer-container{
+      margin-top: 15px;
+    }
+    
+    .button-box {
+      margin-top: 15px;
+    }
+  }
 }
+}
+
+// @media screen and (max-height: 812px) {
+//   .quiz-box {
+//     border-radius: 0;
+//     max-height: none;
+//     padding-top: 20px;
+
+//     .question-box{
+//       margin-top: 25px;
+//     }
+
+//     .question-number{
+//       margin-bottom: 20px !important;
+//     }
+
+//     .answer-container{
+//       margin-top: 25px;
+//     }
+    
+//     .button-box {
+//       justify-content: center;
+//       position: static;
+//       margin-top: 25px;
+//       opacity: 0;
+//       animation: showing 0.3s 0.6s forwards;
+
+//       .button {
+//         margin-right: 0;
+//         font-size: 18px;
+//         padding: 12px 26px;
+//       }
+//     }
+//   }
+//   .question {
+//     line-height: 22px !important;
+//   }
+//   .answer-box {
+//     width: 100% !important;
+//   }
+// }
 
 @keyframes showing {
   from{
