@@ -9,11 +9,15 @@
     </div>
     <div class="question-box">
       <span class="question-number">
-      <i class="change-icon" @click="changeDefinition"></i>
-        Word {{ questionIndexes.length + 1 }}
+        {{ questionIndexes.length + 1 }}. Word
       </span>
-      <span class="question">
-        {{ questionDefinitions[definitionIndex].definition }}
+      <span v-if="questionDefinition" class="question">
+        {{ questionDefinition }}
+      <i class="change-icon" @click="change"></i>
+      </span>
+      <span v-if="translatedWord" class="question question-translation">
+      <img height="25" src="../assets/images/tr-flag.png" alt="turkish" />
+        {{ translatedWord }}
       </span>
     </div>
     <div class="answer-container">
@@ -58,7 +62,7 @@
         </div>
       </div>
     </div>
-    <div class="button-box" v-if="answers.length === 4" :key="questionDefinition + 'button'">
+    <div class="button-box" v-if="answers.length === 4" :key="questionDefinitions[definitionIndex] + 'button'">
       <button
         class="button go-leaderboard"
         v-show="isShowCorrect"
@@ -79,6 +83,7 @@
 
 <script>
 import { getQuestionData, addLeaderboard } from "../core/db";
+import helper from "../utils/helper";
 export default {
   data() {
     return {
@@ -92,6 +97,8 @@ export default {
       isShowCorrect: false,
       userData: undefined,
       definitionIndex: 0,
+      translatedWordList: '',
+      translatedWordIndex: 0,
     };
   },
   props: ["username"],
@@ -105,6 +112,7 @@ export default {
     async next() {
       this.clearQuestionData();
       await this.getQuestion();
+      this.getTranslatedWord();
       this.startTimer();
     },
     sendAnswer() {
@@ -177,6 +185,7 @@ export default {
       }
       this.answers = [];
       this.answerIndexes = [];
+      this.translatedWordList = "";
     },
     shuffle(array) {
       let currentIndex = array.length,
@@ -208,6 +217,10 @@ export default {
         },
       });
     },
+    change(){
+      this.changeDefinition();
+      this.changeTranslatedWord();
+    },
     changeDefinition() {
       if (this.definitionIndex < this.questionDefinitions.length - 1) {
         this.definitionIndex++;
@@ -215,18 +228,35 @@ export default {
         this.definitionIndex = 0;
       }
     },
+    changeTranslatedWord() {
+      if (this.translatedWordIndex < this.translatedWordList.length - 1) {
+        this.translatedWordIndex++;
+      } else
+        this.translatedWordIndex = 0;
+    },
+    async getTranslatedWord() {
+      const {word} = this.answers.find(
+        (a) => a.index === this.questionIndex
+      );
+      const translation = await helper.translateWord(word, 'tr');
+      this.translatedWordList = translation.def[0].tr.filter(t => t.fr === 10).flatMap(f => f.text);
+    },
   },
   computed: {
-    questionDefinitions() {
-      if (this.answers.length === 4) {
-        const question = this.answers.find(
-          (a) => a.index === this.questionIndex
-        );
-        return question.definitions;
-      } else {
-        return [];
-      }
+    question(){
+      return this.answers.length === 4 ? this.answers.find(
+        (a) => a.index === this.questionIndex
+      ) : {};
     },
+    questionDefinitions() {
+      return  this.question.definitions || [];
+    },
+    questionDefinition() {
+      return this.questionDefinitions[this.definitionIndex]?.definition?.toLowerCase().replaceAll(this.question.word,"")
+    },
+    translatedWord() {
+      return this.translatedWordList[this.translatedWordIndex]
+    }
   },
 };
 </script>
@@ -284,7 +314,7 @@ export default {
 	 color: #696f79;
 }
  .quiz-box .question-box {
-	 margin-top: 50px;
+	 margin-top: 25px;
 }
  .quiz-box .question-box .question-number {
    position: relative;
@@ -298,15 +328,24 @@ export default {
 	 margin-bottom: 20px;
 }
  .quiz-box .question-box .question {
-	 display: block;
-	 font-family: Poppins;
-	 font-style: normal;
-	 font-weight: normal;
-	 font-size: 18px;
-	 line-height: 26px;
-	 color: #696f79;
-	 animation: showing 0.3s forwards;
+  font-family: Poppins;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 26px;
+    color: #696f79;
+    animation: showing 0.3s forwards;
+    width: calc(100% - 40px);
+    display: flex;
+    column-gap: 8px;
+    justify-content: space-between;
 }
+  .quiz-box .question-box .question.question-translation{
+    margin-top: 4px;
+    font-weight: 300;
+    font-style: italic;
+    justify-content: flex-start;
+ }
  .quiz-box .answer-container {
 	 margin-top: 50px;
 }
@@ -431,14 +470,13 @@ export default {
 	 margin-right: 52px;
 }
 .change-icon {
+  display: inline-block;
   cursor: pointer;
-  position: absolute;
-  right: 0;
-  top: 0;
   width: 32px;
   height: 32px;
   background: url(../assets/icons/change.svg) no-repeat center;
   background-size: contain;
+  flex-shrink: 0;
 }
  @media screen and (max-width: 569px) {
 	 .quiz-box {
