@@ -4,8 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "install": "npm install --package-lock-only"
+    "build": "vue-cli-service build"
   },
   "dependencies": {
     "core-js": "^3.6.5",
