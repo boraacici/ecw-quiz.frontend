@@ -5,14 +5,15 @@
         <span class="title">Quiz</span>
         <span class="timer">{{ counter }}</span>
       </div>
-      <span class="description">Answer the question below</span>
+      <span class="description">Find the right word</span>
     </div>
     <div class="question-box">
-      <span class="question-number"
-        >Question {{ questionIndexes.length + 1 }}</span
-      >
-      <span class="question" :key="questionDefinition">
-        {{ questionDefinition }}
+      <span class="question-number">
+      <i class="change-icon" @click="changeDefinition"></i>
+        Word {{ questionIndexes.length + 1 }}
+      </span>
+      <span class="question">
+        {{ questionDefinitions[definitionIndex].definition }}
       </span>
     </div>
     <div class="answer-container">
@@ -90,6 +91,7 @@ export default {
       timerInterval: undefined,
       isShowCorrect: false,
       userData: undefined,
+      definitionIndex: 0,
     };
   },
   props: ["username"],
@@ -206,16 +208,23 @@ export default {
         },
       });
     },
+    changeDefinition() {
+      if (this.definitionIndex < this.questionDefinitions.length - 1) {
+        this.definitionIndex++;
+      } else {
+        this.definitionIndex = 0;
+      }
+    },
   },
   computed: {
-    questionDefinition() {
+    questionDefinitions() {
       if (this.answers.length === 4) {
         const question = this.answers.find(
           (a) => a.index === this.questionIndex
         );
-        return question.definitions[0].definition;
+        return question.definitions;
       } else {
-        return "";
+        return [];
       }
     },
   },
@@ -241,6 +250,7 @@ export default {
  .quiz-box .quiz-info-and-timer .quiz-info {
 	 display: flex;
 	 justify-content: space-between;
+   align-items: center;
 }
  .quiz-box .quiz-info-and-timer .quiz-info .title {
 	 display: block;
@@ -256,9 +266,14 @@ export default {
 	 font-family: Poppins;
 	 font-style: normal;
 	 font-weight: normal;
-	 font-size: 33px;
+	 font-size: 24px;
 	 line-height: 49px;
 	 color: #de6944;
+   border: 1px solid red;
+   border-radius: 50%;
+   display: flex;
+   justify-content: center;
+   width: 49px;
 }
  .quiz-box .quiz-info-and-timer .description {
 	 font-family: Poppins;
@@ -272,6 +287,7 @@ export default {
 	 margin-top: 50px;
 }
  .quiz-box .question-box .question-number {
+   position: relative;
 	 display: block;
 	 font-family: Poppins;
 	 font-style: normal;
@@ -413,6 +429,16 @@ export default {
 	 padding: 16px 32px;
 	 border: none;
 	 margin-right: 52px;
+}
+.change-icon {
+  cursor: pointer;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 32px;
+  height: 32px;
+  background: url(../assets/icons/change.svg) no-repeat center;
+  background-size: contain;
 }
  @media screen and (max-width: 569px) {
 	 .quiz-box {
