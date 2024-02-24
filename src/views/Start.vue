@@ -57,10 +57,7 @@ export default {
         }
 
         this.$router.push({
-          name: "Game",
-          params: {
-            username: this.username,
-          },
+          name: "Game"
         });
       }
     },

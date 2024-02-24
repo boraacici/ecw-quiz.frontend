@@ -53,16 +53,17 @@ export default {
     return {
       top5Scores: undefined,
       isUserTop5: false,
+      userData: {
+        username: localStorage.username,
+        score: localStorage.score,
+        id: localStorage.scoreId,
+      },
     };
   },
-  props: ["userData"],
   methods: {
     tryAgain() {
       this.$router.push({
-        name: "Game",
-        params: {
-          username: localStorage.username,
-        },
+        name: "Game"
       });
     },
   },
@@ -72,12 +73,12 @@ export default {
         name: "Start",
       });
     }
-
     this.top5Scores = await getTop5Score();
-
     if (this.top5Scores.indexOf((doc) => doc.id === this.userData.id) !== -1) {
       this.isUserTop5 = true;
     }
+    localStorage.removeItem("score");
+    localStorage.removeItem("scoreId");
   },
 };
 </script>

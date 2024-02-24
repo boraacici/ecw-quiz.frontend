@@ -87,6 +87,7 @@ import helper from "../utils/helper";
 export default {
   data() {
     return {
+      username: localStorage.username,
       counter: 25,
       questionIndexes: [],
       questionIndex: null,
@@ -101,7 +102,6 @@ export default {
       translatedWordIndex: 0,
     };
   },
-  props: ["username"],
   async mounted() {
     if (!this.username) {
       this.$router.push({ name: "Start" });
@@ -209,12 +209,10 @@ export default {
         score: this.questionIndexes.length,
       };
       this.userData = await addLeaderboard(userScoreData);
-      //
+      localStorage.score = userScoreData.score;
+      localStorage.scoreId = this.userData.id;
       this.$router.push({
         name: "LeaderBoard",
-        params: {
-          userData: { ...userScoreData, id: this.userData.id },
-        },
       });
     },
     change(){
