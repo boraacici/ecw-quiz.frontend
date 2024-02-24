@@ -82,111 +82,102 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .leader-board-container {
-  width: 100%;
-  height: 100%;
-  max-width: 509px;
-  max-height: 649px;
-  background: #ffffff;
-  box-shadow: 0px 15px 40px 5px #ededed;
-  border-radius: 30px;
-  display: flex;
-  flex-direction: column;
-  padding: 0 30px;
-  justify-content: space-evenly;
-
-  .leader-board-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    .title {
-      font-family: Poppins;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 33px;
-      line-height: 49px;
-      color: #696f79;
-      margin-bottom: 10px;
-    }
-    .leader-board-text {
-      font-family: Poppins;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 20px;
-      line-height: 22px;
-      color: #696f79;
-      text-align: center;
-
-      .bold {
-        font-weight: bold;
-      }
-    }
-  }
-
-  .content-table {
-    font-size: 16px;
-
-    thead tr th {
-      font-family: Poppins;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 23px;
-      line-height: 34px;
-      color: #696f79;
-    }
-    tbody tr th {
-      font-family: Poppins;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 18px;
-      line-height: 23px;
-      color: #696f79;
-    }
-
-    th,
-    td {
-      padding: 3px 3px;
-      font-weight: normal;
-    }
-    tbody tr.active-row {
-      th {
-        font-weight: bold;
-      }
-    }
-  }
-  .try-again {
-    width: 100%;
-    display: inline-flex;
-    justify-content: space-around;
-
-    .button {
-      font-family: Poppins;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 22px;
-      line-height: 33px;
-      color: #ffffff;
-      background: #8692a6;
-      border-radius: 30px;
-      padding: 16px 32px;
-      border: none;
-    }
-  }
+	 width: 100%;
+	 height: 100%;
+	 max-width: 509px;
+	 max-height: 649px;
+	 background: #fff;
+	 box-shadow: 0px 15px 40px 5px #ededed;
+	 border-radius: 30px;
+	 display: flex;
+	 flex-direction: column;
+	 padding: 0 30px;
+	 justify-content: space-evenly;
 }
-@media screen and (max-width: 569px) {
-  .leader-board-container {
-    border-radius: 0;
-    max-height: none;
-
-    .try-again {
-      justify-content: center;
-    }
-  }
-  .button {
-    margin-right: 0;
-    font-size: 18px !important;
-    padding: 12px 26px !important;
-  }
+ .leader-board-container .leader-board-box {
+	 display: flex;
+	 flex-direction: column;
+	 align-items: center;
 }
+ .leader-board-container .leader-board-box .title {
+	 font-family: Poppins;
+	 font-style: normal;
+	 font-weight: bold;
+	 font-size: 33px;
+	 line-height: 49px;
+	 color: #696f79;
+	 margin-bottom: 10px;
+}
+ .leader-board-container .leader-board-box .leader-board-text {
+	 font-family: Poppins;
+	 font-style: normal;
+	 font-weight: normal;
+	 font-size: 20px;
+	 line-height: 22px;
+	 color: #696f79;
+	 text-align: center;
+}
+ .leader-board-container .leader-board-box .leader-board-text .bold {
+	 font-weight: bold;
+}
+ .leader-board-container .content-table {
+	 font-size: 16px;
+}
+ .leader-board-container .content-table thead tr th {
+	 font-family: Poppins;
+	 font-style: normal;
+	 font-weight: 600;
+	 font-size: 23px;
+	 line-height: 34px;
+	 color: #696f79;
+}
+ .leader-board-container .content-table tbody tr th {
+	 font-family: Poppins;
+	 font-style: normal;
+	 font-weight: normal;
+	 font-size: 18px;
+	 line-height: 23px;
+	 color: #696f79;
+}
+ .leader-board-container .content-table th, .leader-board-container .content-table td {
+	 padding: 3px 3px;
+	 font-weight: normal;
+}
+ .leader-board-container .content-table tbody tr.active-row th {
+	 font-weight: bold;
+}
+ .leader-board-container .try-again {
+	 width: 100%;
+	 display: inline-flex;
+	 justify-content: space-around;
+}
+ .leader-board-container .try-again .button {
+	 font-family: Poppins;
+	 font-style: normal;
+	 font-weight: bold;
+	 font-size: 22px;
+	 line-height: 33px;
+	 color: #fff;
+	 background: #8692a6;
+	 border-radius: 30px;
+	 padding: 16px 32px;
+	 border: none;
+}
+ @media screen and (max-width: 569px) {
+	 .leader-board-container {
+		 border-radius: 0;
+		 max-height: none;
+	}
+	 .leader-board-container .try-again {
+		 justify-content: center;
+	}
+	 .button {
+		 margin-right: 0;
+		 font-size: 18px !important;
+		 padding: 12px 26px !important;
+	}
+}
+ 
 </style>

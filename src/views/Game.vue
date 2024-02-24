@@ -222,325 +222,258 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style>
 .quiz-box {
-  width: 100%;
-  height: 100%;
-  max-width: 509px;
-  max-height: 649px;
-  background: #ffffff;
-  box-shadow: 0px 15px 40px 5px #ededed;
-  border-radius: 30px;
-  display: flex;
-  flex-direction: column;
-  padding: 0 30px;
-  padding-top: 40px;
-  box-sizing: border-box;
-  position: relative;
-
-  .quiz-info-and-timer {
-    .quiz-info {
-      display: flex;
-      justify-content: space-between;
-      .title {
-        display: block;
-        font-family: Poppins;
-        font-style: normal;
-        font-weight: bold;
-        font-size: 33px;
-        line-height: 49px;
-        color: #696f79;
-        margin-bottom: 10px;
-      }
-      .timer {
-        font-family: Poppins;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 33px;
-        line-height: 49px;
-        color: #de6944;
-      }
-    }
-    .description {
-      font-family: Poppins;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 20px;
-      line-height: 22px;
-      color: #696f79;
-    }
-  }
-  .question-box {
-    margin-top: 50px;
-    .question-number {
-      display: block;
-      font-family: Poppins;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 23px;
-      line-height: 34px;
-      color: #696f79;
-      margin-bottom: 20px;
-    }
-    .question {
-      display: block;
-      font-family: Poppins;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 18px;
-      line-height: 26px;
-      color: #696f79;
-      animation: showing 0.3s forwards;
-    }
-  }
-  .answer-container {
-    margin-top: 50px;
-
-    .choose {
-      font-family: Poppins;
-      font-style: normal;
-      font-weight: 600;
-      font-size: 23px;
-      line-height: 34px;
-      color: #696f79;
-    }
-    .answer-box {
-      display: flex;
-      justify-content: space-between;
-      width: 70%;
-
-      .radio-box {
-        display: inline-flex;
-        flex-direction: column;
-        align-items: flex-start;
-
-        /* The container */
-        .container {
-          display: block;
-          position: relative;
-          padding-left: 35px;
-          margin-bottom: 12px;
-          cursor: pointer;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
-          font-family: Poppins;
-          font-size: 18px;
-          font-style: normal;
-          font-weight: 400;
-          line-height: 27px;
-          letter-spacing: 0em;
-          text-align: left;
-          color: #696f79;
-          opacity: 0;
-          animation: showing 0.3s 0.3s forwards
-        }
-
-        /* Hide the browser's default radio button */
-        .container input {
-          position: absolute;
-          opacity: 0;
-          cursor: pointer;
-        }
-
-        /* Create a custom radio button */
-        .checkmark {
-          position: absolute;
-          top: 2px;
-          left: 0;
-          height: 17px;
-          width: 17px;
-          border: 2px solid #696f79;
-          border-radius: 50%;
-        }
-
-        /* On mouse-over, add a grey background color */
-        .container:hover input ~ .checkmark {
-          background-color: #ccc;
-        }
-
-        /* When the radio button is checked, add a blue background */
-        .container input:checked ~ .checkmark {
-          background-color: #fff;
-        }
-
-        /* Create the indicator (the dot/circle - hidden when not checked) */
-        .checkmark:after {
-          content: "";
-          position: absolute;
-          display: none;
-        }
-
-        /* Show the indicator (dot/circle) when checked */
-        .container input:checked ~ .checkmark:after {
-          display: block;
-        }
-
-        /* Style the indicator (dot/circle) */
-        .container .checkmark:after {
-          top: 4px;
-          left: 4px;
-          width: 9px;
-          height: 9px;
-          border-radius: 50%;
-          background: #696f79;
-        }
-      }
-      .secret-answer {
-        display: inline-flex;
-        flex-direction: column;
-
-        .secret-answer-text {
-          font-family: Poppins;
-          font-style: normal;
-          font-weight: bold;
-          font-size: 13px;
-          line-height: 27px;
-          color: #f24e1e;
-
-          margin-bottom: 12px;
-
-          &.correct {
-            color: #08ad36;
-          }
-        }
-      }
-    }
-  }
-  .button-box {
-    width: 100%;
-    display: inline-flex;
-    justify-content: flex-end;
-    position: absolute;
-    bottom: 40px;
-    left: 0;
-
-    .button {
-      font-family: Poppins;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 22px;
-      line-height: 33px;
-      color: #ffffff;
-      background: #8692a6;
-      border-radius: 30px;
-      padding: 16px 32px;
-      border: none;
-      margin-right: 52px;
-    }
-  }
+	 width: 100%;
+	 height: 100%;
+	 max-width: 509px;
+	 max-height: 649px;
+	 background: #fff;
+	 box-shadow: 0px 15px 40px 5px #ededed;
+	 border-radius: 30px;
+	 display: flex;
+	 flex-direction: column;
+	 padding: 0 30px;
+	 padding-top: 40px;
+	 box-sizing: border-box;
+	 position: relative;
 }
-
-@media screen and (max-width: 569px) {
-    .quiz-box {
-    border-radius: 0;
-    max-height: none;
-    padding-top: 20px;
-
-    .question-box{
-      margin-top: 25px;
-    }
-
-    .question-number{
-      margin-bottom: 20px !important;
-    }
-
-    .answer-container{
-      margin-top: 25px;
-    }
-    
-    .button-box {
-      justify-content: center;
-      position: static;
-      margin-top: 25px;
-      opacity: 0;
-      animation: showing 0.3s 0.6s forwards;
-
-      .button {
-        margin-right: 0;
-        font-size: 18px;
-        padding: 12px 26px;
-      }
-    }
-  }
-  .question {
-    line-height: 22px !important;
-  }
-  .answer-box {
-    width: 100% !important;
-  }
-  @media  screen and  (max-height: 667px)  {
-  .quiz-box {
-    padding-top: 0px;
-
-    .question-box{
-      margin-top: 15px;
-    }
-
-    .question-number{
-      margin-bottom: 10px !important;
-    }
-
-    .answer-container{
-      margin-top: 15px;
-    }
-    
-    .button-box {
-      margin-top: 15px;
-    }
-  }
+ .quiz-box .quiz-info-and-timer .quiz-info {
+	 display: flex;
+	 justify-content: space-between;
 }
+ .quiz-box .quiz-info-and-timer .quiz-info .title {
+	 display: block;
+	 font-family: Poppins;
+	 font-style: normal;
+	 font-weight: bold;
+	 font-size: 33px;
+	 line-height: 49px;
+	 color: #696f79;
+	 margin-bottom: 10px;
 }
-
-// @media screen and (max-height: 812px) {
-//   .quiz-box {
-//     border-radius: 0;
-//     max-height: none;
-//     padding-top: 20px;
-
-//     .question-box{
-//       margin-top: 25px;
-//     }
-
-//     .question-number{
-//       margin-bottom: 20px !important;
-//     }
-
-//     .answer-container{
-//       margin-top: 25px;
-//     }
-    
-//     .button-box {
-//       justify-content: center;
-//       position: static;
-//       margin-top: 25px;
-//       opacity: 0;
-//       animation: showing 0.3s 0.6s forwards;
-
-//       .button {
-//         margin-right: 0;
-//         font-size: 18px;
-//         padding: 12px 26px;
-//       }
-//     }
-//   }
-//   .question {
-//     line-height: 22px !important;
-//   }
-//   .answer-box {
-//     width: 100% !important;
-//   }
-// }
-
-@keyframes showing {
-  from{
-    opacity: 0;
-    transform: translate(0px, 20px);
-  }
-  to{
-      opacity: 1;
-      transform: translate(0px, 0px);
-  }
+ .quiz-box .quiz-info-and-timer .quiz-info .timer {
+	 font-family: Poppins;
+	 font-style: normal;
+	 font-weight: normal;
+	 font-size: 33px;
+	 line-height: 49px;
+	 color: #de6944;
 }
+ .quiz-box .quiz-info-and-timer .description {
+	 font-family: Poppins;
+	 font-style: normal;
+	 font-weight: normal;
+	 font-size: 20px;
+	 line-height: 22px;
+	 color: #696f79;
+}
+ .quiz-box .question-box {
+	 margin-top: 50px;
+}
+ .quiz-box .question-box .question-number {
+	 display: block;
+	 font-family: Poppins;
+	 font-style: normal;
+	 font-weight: 600;
+	 font-size: 23px;
+	 line-height: 34px;
+	 color: #696f79;
+	 margin-bottom: 20px;
+}
+ .quiz-box .question-box .question {
+	 display: block;
+	 font-family: Poppins;
+	 font-style: normal;
+	 font-weight: normal;
+	 font-size: 18px;
+	 line-height: 26px;
+	 color: #696f79;
+	 animation: showing 0.3s forwards;
+}
+ .quiz-box .answer-container {
+	 margin-top: 50px;
+}
+ .quiz-box .answer-container .choose {
+	 font-family: Poppins;
+	 font-style: normal;
+	 font-weight: 600;
+	 font-size: 23px;
+	 line-height: 34px;
+	 color: #696f79;
+}
+ .quiz-box .answer-container .answer-box {
+	 display: flex;
+	 justify-content: space-between;
+	 width: 70%;
+}
+ .quiz-box .answer-container .answer-box .radio-box {
+	 display: inline-flex;
+	 flex-direction: column;
+	 align-items: flex-start;
+	/* The container */
+	/* Hide the browser's default radio button */
+	/* Create a custom radio button */
+	/* On mouse-over, add a grey background color */
+	/* When the radio button is checked, add a blue background */
+	/* Create the indicator (the dot/circle - hidden when not checked) */
+	/* Show the indicator (dot/circle) when checked */
+	/* Style the indicator (dot/circle) */
+}
+ .quiz-box .answer-container .answer-box .radio-box .container {
+	 display: block;
+	 position: relative;
+	 padding-left: 35px;
+	 margin-bottom: 12px;
+	 cursor: pointer;
+	 -webkit-user-select: none;
+	 -moz-user-select: none;
+	 -ms-user-select: none;
+	 user-select: none;
+	 font-family: Poppins;
+	 font-size: 18px;
+	 font-style: normal;
+	 font-weight: 400;
+	 line-height: 27px;
+	 letter-spacing: 0em;
+	 text-align: left;
+	 color: #696f79;
+	 opacity: 0;
+	 animation: showing 0.3s 0.3s forwards;
+}
+ .quiz-box .answer-container .answer-box .radio-box .container input {
+	 position: absolute;
+	 opacity: 0;
+	 cursor: pointer;
+}
+ .quiz-box .answer-container .answer-box .radio-box .checkmark {
+	 position: absolute;
+	 top: 2px;
+	 left: 0;
+	 height: 17px;
+	 width: 17px;
+	 border: 2px solid #696f79;
+	 border-radius: 50%;
+}
+ .quiz-box .answer-container .answer-box .radio-box .container:hover input ~ .checkmark {
+	 background-color: #ccc;
+}
+ .quiz-box .answer-container .answer-box .radio-box .container input:checked ~ .checkmark {
+	 background-color: #fff;
+}
+ .quiz-box .answer-container .answer-box .radio-box .checkmark:after {
+	 content: "";
+	 position: absolute;
+	 display: none;
+}
+ .quiz-box .answer-container .answer-box .radio-box .container input:checked ~ .checkmark:after {
+	 display: block;
+}
+ .quiz-box .answer-container .answer-box .radio-box .container .checkmark:after {
+	 top: 4px;
+	 left: 4px;
+	 width: 9px;
+	 height: 9px;
+	 border-radius: 50%;
+	 background: #696f79;
+}
+ .quiz-box .answer-container .answer-box .secret-answer {
+	 display: inline-flex;
+	 flex-direction: column;
+}
+ .quiz-box .answer-container .answer-box .secret-answer .secret-answer-text {
+	 font-family: Poppins;
+	 font-style: normal;
+	 font-weight: bold;
+	 font-size: 13px;
+	 line-height: 27px;
+	 color: #f24e1e;
+	 margin-bottom: 12px;
+}
+ .quiz-box .answer-container .answer-box .secret-answer .secret-answer-text.correct {
+	 color: #08ad36;
+}
+ .quiz-box .button-box {
+	 width: 100%;
+	 display: inline-flex;
+	 justify-content: flex-end;
+	 position: absolute;
+	 bottom: 40px;
+	 left: 0;
+}
+ .quiz-box .button-box .button {
+	 font-family: Poppins;
+	 font-style: normal;
+	 font-weight: bold;
+	 font-size: 22px;
+	 line-height: 33px;
+	 color: #fff;
+	 background: #8692a6;
+	 border-radius: 30px;
+	 padding: 16px 32px;
+	 border: none;
+	 margin-right: 52px;
+}
+ @media screen and (max-width: 569px) {
+	 .quiz-box {
+		 border-radius: 0;
+		 max-height: none;
+		 padding-top: 20px;
+	}
+	 .quiz-box .question-box {
+		 margin-top: 25px;
+	}
+	 .quiz-box .question-number {
+		 margin-bottom: 20px !important;
+	}
+	 .quiz-box .answer-container {
+		 margin-top: 25px;
+	}
+	 .quiz-box .button-box {
+		 justify-content: center;
+		 position: static;
+		 margin-top: 25px;
+		 opacity: 0;
+		 animation: showing 0.3s 0.6s forwards;
+	}
+	 .quiz-box .button-box .button {
+		 margin-right: 0;
+		 font-size: 18px;
+		 padding: 12px 26px;
+	}
+	 .question {
+		 line-height: 22px !important;
+	}
+	 .answer-box {
+		 width: 100% !important;
+	}
+}
+ @media screen and (max-width: 569px) and (max-height: 667px) {
+	 .quiz-box {
+		 padding-top: 0px;
+	}
+	 .quiz-box .question-box {
+		 margin-top: 15px;
+	}
+	 .quiz-box .question-number {
+		 margin-bottom: 10px !important;
+	}
+	 .quiz-box .answer-container {
+		 margin-top: 15px;
+	}
+	 .quiz-box .button-box {
+		 margin-top: 15px;
+	}
+}
+ @keyframes showing {
+	 from {
+		 opacity: 0;
+		 transform: translate(0px, 20px);
+	}
+	 to {
+		 opacity: 1;
+		 transform: translate(0px, 0px);
+	}
+}
+ 
 </style>
